@@ -1,5 +1,5 @@
 import pygame
-from Tabuleiro.TabuleiroXadrez import Board
+from board.ChessBoard import Board
 
 
 pygame.init() #inicialize todos os módulos pygame importados#

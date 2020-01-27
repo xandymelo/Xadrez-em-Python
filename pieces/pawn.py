@@ -1,6 +1,6 @@
-from peças.peça import Piece
+from pieces.piece import Piece
 
-class Bishop(Piece):
+class Pawn(Piece):
     
     alliance = None
     position = None
@@ -10,4 +10,4 @@ class Bishop(Piece):
         self.position = position
 
     def toString(self):
-        return "B" if self.alliance == "Black" else "b"
+        return "P" if self.alliance == "Black" else "p"

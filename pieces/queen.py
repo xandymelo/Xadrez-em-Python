@@ -1,4 +1,4 @@
-from peças.peça import Piece
+from pieces.piece import Piece
 
 class Queen(Piece):
     
