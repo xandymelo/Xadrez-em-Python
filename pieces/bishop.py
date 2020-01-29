@@ -11,3 +11,5 @@ class Bishop(Piece):
 
     def toString(self):
         return "B" if self.alliance == "Black" else "b"
+    
+    

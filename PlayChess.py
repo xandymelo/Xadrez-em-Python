@@ -29,7 +29,7 @@ def drawChessPieces():
     height = 100
     black = (66,134,244)
     white = (143,155,175)
-    number = 0
+    number = 1
     for _ in range(8):
         for _ in range(8):
             if color % 2 == 0:
