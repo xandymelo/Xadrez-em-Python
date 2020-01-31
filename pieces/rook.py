@@ -5,7 +5,7 @@ class Rook(Piece):
     alliance = None
     position = None
     
-    def __init__(self, alliance, position):
+    def __init__(self, position, alliance):
         self.alliance = alliance
         self.position = position
 
