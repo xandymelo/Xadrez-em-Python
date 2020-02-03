@@ -1,9 +1,11 @@
 
-import os
-from boards.ChessBoard import Board
 
 
-class Piece(Board):
+class Piece():
+
+    gameTiles = []
+
+
     def __init__(self):
         pass
 

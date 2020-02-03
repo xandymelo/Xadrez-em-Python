@@ -1,6 +1,7 @@
 import pygame
 import os
 from boards.ChessBoard import Board
+from pieces.piece import Piece
 
 
 
@@ -36,19 +37,19 @@ def drawChessPieces():
         for _ in range(8):
             if color % 2 == 0:
                 squares(xpos, ypos, width, height, white)
-                if not chessBoard.gameTiles[number].pieceOnTile.toString() == "-":
-                    img = pygame.image.load("./ChessArt/" + chessBoard.gameTiles[number].pieceOnTile.alliance[0].upper() + chessBoard.gameTiles[
+                if not Piece.gameTiles[number].pieceOnTile.toString() == "-":
+                    img = pygame.image.load("./ChessArt/" + Piece.gameTiles[number].pieceOnTile.alliance[0].upper() + Piece.gameTiles[
                         number].pieceOnTile.toString().upper() + ".png")
                     img = pygame.transform.scale(img, (100, 100))
-                    allPieces.append([img, [xpos, ypos], chessBoard.gameTiles[number].pieceOnTile])
+                    allPieces.append([img, [xpos, ypos], Piece.gameTiles[number].pieceOnTile])
                 xpos += 100
             else:
                 squares(xpos, ypos, width, height, black)
-                if not chessBoard.gameTiles[number].pieceOnTile.toString() == "-":
-                    img = pygame.image.load("./ChessArt/" + chessBoard.gameTiles[number].pieceOnTile.alliance[0].upper() + chessBoard.gameTiles[
+                if not Piece.gameTiles[number].pieceOnTile.toString() == "-":
+                    img = pygame.image.load("./ChessArt/" + Piece.gameTiles[number].pieceOnTile.alliance[0].upper() + Piece.gameTiles[
                         number].pieceOnTile.toString().upper() + ".png")
                     img = pygame.transform.scale(img, (100, 100))
-                    allPieces.append([img, [xpos, ypos], chessBoard.gameTiles[number].pieceOnTile])
+                    allPieces.append([img, [xpos, ypos], Piece.gameTiles[number].pieceOnTile])
                 xpos += 100
 
             color += 1
@@ -58,7 +59,7 @@ def drawChessPieces():
         ypos += 100
 
 
-drawChessPieces()
+#drawChessPieces()
 
 quitGame = False
 
@@ -72,8 +73,8 @@ while not quitGame:
             quit()
     
 
-    for img in allPieces:
-        gameDisplay.blit(img[0],img[1]) #desenhar uma imagem na outra#
+#   for img in allPieces:
+#        gameDisplay.blit(img[0],img[1]) #desenhar uma imagem na outra#
 
-    pygame.display.update() #Atualizar partes da tela para exibições de software#
-    clock.tick(60) #atualizar o relógio#
+#   pygame.display.update() #Atualizar partes da tela para exibições de software#
+#    clock.tick(60) #atualizar o relógio#

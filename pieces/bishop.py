@@ -1,5 +1,4 @@
 from pieces.piece import Piece
-from board.ChessBoard import Board
 
 class Bishop(Piece):
     
