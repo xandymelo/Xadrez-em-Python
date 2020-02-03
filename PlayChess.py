@@ -1,5 +1,7 @@
 import pygame
-from board.ChessBoard import Board
+import os
+from boards.ChessBoard import Board
+
 
 
 pygame.init() #inicialize todos os módulos pygame importados#

@@ -1,8 +1,6 @@
 
 import os
-from board.ChessBoard import Board
-os.chdir(r"././board")
-
+from boards.ChessBoard import Board
 
 
 class Piece(Board):
