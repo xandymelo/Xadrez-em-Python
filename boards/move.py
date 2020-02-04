@@ -1,4 +1,6 @@
 from ChessBoard import Board
+from pieces.nullpiece import NullPiece
+from boards.utilMove import util
 
 
 
@@ -20,10 +22,11 @@ class Move(Board):
     
     #AJEITAR ESSA FUNÇÃO E COLOCAR OUTRAS#
     def movimentar_peca(self,cor_do_jogador,input): #mudar o formato do input para o formatov'd2d4'#
+        ut = util()
         local_atual = input[0] + input[1]
         novo_local = input[2] + input[3]
-        local_atual_convertido = self.converter_inputs(local_atual)
-        novo_local_convertido = self.converter_inputs(novo_local)
+        local_atual_convertido = ut.converter_inputs(local_atual)
+        novo_local_convertido = ut.converter_inputs(novo_local)
         cor_do_jogador = cor_do_jogador.upper()
         cor_do_adversario = ""
         if cor_do_jogador == "BRANCAS":
@@ -50,7 +53,7 @@ class Move(Board):
             if local_atual_convertido == 1:
                 self.contagem_movimento_torre_rma_brancas += 1
         if cor_do_jogador in nome_da_peca:
-            if ((self.gameTiles[novo_local_convertido] == " ") or (cor_do_adversario in self.gameTiles[novo_local_convertido].nome())):
+            if ((self.gameTiles[novo_local_convertido] is NullPiece) or (cor_do_adversario in self.gameTiles[novo_local_convertido].nome())):
                 self.gameTiles[novo_local_convertido] == self.gameTiles[local_atual_convertido]
                 self.gameTiles[local_atual_convertido].local_atual = novo_local_convertido
                 self.gameTiles[local_atual_convertido] == " "
@@ -70,16 +73,17 @@ class Move(Board):
     
     
     def roque_menor(self,cor_do_jogador):
+        ut = util()
         cor_do_jogador = cor_do_jogador.upper()
         if cor_do_jogador == "BRANCAS":
-            if (self.contagem_movimento_rei_brancas > 0) or (self.contagem_movimento_torre_rm_brancas > 0) or (self.peca_ameacada(6,partida)) or (self.peca_ameacada(7,partida)) or (partida[6] != "") or (partida[7] != "") or (self.xeque(cor_do_jogador,partida)):
+            if (self.contagem_movimento_rei_brancas > 0) or (self.contagem_movimento_torre_rm_brancas > 0) or (ut.peca_ameacada(6)) or (ut.peca_ameacada(7)) or (self.gameTiles[6] != "") or (self.gameTiles[7] != "") or (ut.xeque(cor_do_jogador)):
                 return 0
             else:
                 self.movimentar_peca(cor_do_jogador,"Rg1")
                 self.movimentar_peca(cor_do_jogador,"Tf1")
                 return 1
         if cor_do_jogador == "PRETAS" or (cor_do_jogador == "NEGRAS"):
-            if (self.contagem_movimento_rei_pretas > 0) or (self.contagem_movimento_torre_rm_pretas > 0) or (self.peca_ameacada(62,partida)) or (self.peca_ameacada(63,partida)) or (partida[63] != "") or (partida[62] != "") or (self.xeque(cor_do_jogador,partida)):
+            if (self.contagem_movimento_rei_pretas > 0) or (self.contagem_movimento_torre_rm_pretas > 0) or (ut.peca_ameacada(62)) or (ut.peca_ameacada(63)) or (self.gameTiles[63] != "") or (self.gameTiles[62] != "") or (ut.xeque(cor_do_jogador)):
                 return 0
             else:
                 self.movimentar_peca(cor_do_jogador,"Rg8")

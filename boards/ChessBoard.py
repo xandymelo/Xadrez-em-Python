@@ -10,14 +10,7 @@ from pieces.bishop import Bishop
 
 class Board(Piece):
     
-    primeira_coluna = [x for x in range(1,65) if x % 8 == 1]
-    primeira_e_segunda_coluna = [x for x in range(1,65) if x % 8 == 1 or x % 8 == 2]
-    penultima_e_ultima_coluna = [x for x in range(1,65) if x % 8 == 7 or x % 8 == 0]
-    primeira_e_segunda_linha = [x for x in range(1,17)]
-    penultima_e_ultima_linha = [x for x in range(49,65)]
-    ultima_coluna = [x for x in range(1,64) if x % 8 == 0]
-    ultima_linha = [x for x in range(56,65)]
-    primeira_linha = [x for x in range(1,9)]
+    
 
     def __init__(self):
         pass

@@ -1,7 +1,7 @@
 from ChessBoard import Board
+from pieces.piece import Piece
 
-
-class util():
+class util(Piece):
     def __init__(self):
         pass
 
@@ -42,14 +42,30 @@ class util():
             cor_do_jogador_adversario = "Brancas"
         else:
             cor_do_jogador_adversario = "Pretas"
-        if local_atual in a.todos_os_movimentos_possiveis(cor_do_jogador_adversario,self.gameTiles):
+        if local_atual in self.todos_os_movimentos_possiveis(cor_do_jogador_adversario):
             return 1
         else:
             return 0
-        mov_possiveis = a.todos_os_movimentos_possiveis("Brancas",self.gameTiles) + a.todos_os_movimentos_possiveis("Pretas",self.gameTiles)
+        mov_possiveis = self.todos_os_movimentos_possiveis("Brancas") + self.todos_os_movimentos_possiveis("Pretas")
         if self.gameTiles[local_atual] == "" and (local_atual in mov_possiveis):
             return 1
         else:
             return 0
+    def xeque(self,cor_do_jogador):#Aqui irei verificar se a casa do rei está na lista de movimentos possiveis (lembrando que a função de todos os movimentos possiveis não inclui os movimentos do rei  #
+        cor_do_jogador = cor_do_jogador.upper()
+        if cor_do_jogador == "PRETAS" or cor_do_jogador == "NEGRAS":
+            casa_do_rei = self.gameTiles.index("K")
+            movimentos_possiveis = self.todos_os_movimentos_possiveis("Brancas")
+            if casa_do_rei in movimentos_possiveis:
+                return True
+            else:
+                return False
+        if cor_do_jogador == "BRANCAS":
+            casa_do_rei = self.gameTiles.index("k")
+            movimentos_possiveis = self.todos_os_movimentos_possiveis("Pretas")
+            if casa_do_rei in movimentos_possiveis:
+                return True
+            else:
+                return False
 
 
