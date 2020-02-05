@@ -87,6 +87,10 @@ cor2 = 'Pretas'
 jogada1 = input("Jogador1: ")
 move = Move()
 move.movimentar_peca(cor1,jogada1)
-chessBoard.printBoard
+chessBoard.printBoard()
 jogada2 = input("Jogador2: ")
 move.movimentar_peca(cor2,jogada2)
+chessBoard.printBoard()
+
+
+#DEBUGGGAR A FUNÇÃO MOVIMENTAR_PECA

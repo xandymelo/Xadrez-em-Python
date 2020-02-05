@@ -11,9 +11,9 @@ class Piece():
     ultima_coluna = [x for x in range(1,64) if x % 8 == 0]
     ultima_linha = [x for x in range(56,65)]
     primeira_linha = [x for x in range(1,9)]
+    gameTiles = []
 
     def __init__(self):
-        self.gameTiles = []
         self.position = None
         self.alliance = None
 
