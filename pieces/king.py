@@ -2,9 +2,7 @@ from pieces.piece import Piece
 
 
 class King(Piece):
-    
-    alliance = None
-    position = None
+
     
     def __init__(self, position, alliance):
         self.alliance = alliance
@@ -13,12 +11,12 @@ class King(Piece):
     def toString(self):
         return "K" if self.alliance == "Black" else "k"
     
-    def mov_possiveis(self):
-        cor_do_jogador = ""
-        if "Pretas" in self.gameTiles[self.position]:
-            cor_do_jogador == "PRETAS"
-        elif "Brancas" in self.gameTiles[self.position]:
-            cor_do_jogador == "BRANCAS"
+    def possible_mov(self):
+        cor_do_jogador = self.alliance.upper()
+        #if "Pretas" in self.gameTiles[self.position]:
+            #cor_do_jogador == "PRETAS"
+        #elif "Brancas" in self.gameTiles[self.position]:
+            #cor_do_jogador == "BRANCAS"
         mov_possiveis = []
         mov_possiveis.append(self.position + 8)
         mov_possiveis.append(self.position - 8)

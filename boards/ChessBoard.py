@@ -1,5 +1,6 @@
-from boards.tile import Tile
+import os
 from pieces.piece import Piece
+from boards.tile import Tile
 from pieces.nullpiece import NullPiece
 from pieces.queen import Queen
 from pieces.rook import Rook
@@ -7,6 +8,7 @@ from pieces.pawn import Pawn
 from pieces.knight import Knight
 from pieces.king import King
 from pieces.bishop import Bishop
+
 
 class Board(Piece):
     

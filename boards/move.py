@@ -1,6 +1,7 @@
-from ChessBoard import Board
+from boards.ChessBoard import Board
 from pieces.nullpiece import NullPiece
 from boards.utilMove import util
+from boards.tile import Tile
 
 
 
@@ -37,7 +38,7 @@ class Move(Board):
             cor_do_adversario = "Brancas"
 
         #criar a parte que verifica se a jogada é válida#
-        nome_da_peca = self.gameTiles[local_atual_convertido].nome()
+        nome_da_peca = self.gameTiles[local_atual_convertido].ToString()
         if nome_da_peca == "ReiPretas":
             self.contagem_movimento_rei_pretas += 1
         if nome_da_peca == "ReiBrancas":
@@ -52,16 +53,16 @@ class Move(Board):
                 self.contagem_movimento_torre_rm_brancas += 1
             if local_atual_convertido == 1:
                 self.contagem_movimento_torre_rma_brancas += 1
-        if cor_do_jogador in nome_da_peca:
-            if ((self.gameTiles[novo_local_convertido] is NullPiece) or (cor_do_adversario in self.gameTiles[novo_local_convertido].nome())):
-                self.gameTiles[novo_local_convertido] == self.gameTiles[local_atual_convertido]
-                self.gameTiles[local_atual_convertido].local_atual = novo_local_convertido
-                self.gameTiles[local_atual_convertido] == " "
-                print("Jogada feita com sucesso")
-                return False
-        else:
-            print("Escolha uma jogada com a cor correta (" + cor_do_jogador + ")")
-            return True
+        #if cor_do_jogador in nome_da_peca:
+        if ((self.gameTiles[novo_local_convertido] is NullPiece) or (cor_do_adversario in self.gameTiles[novo_local_convertido].nome())):
+            self.gameTiles[novo_local_convertido] == self.gameTiles[local_atual_convertido]
+            self.gameTiles[local_atual_convertido].local_atual = novo_local_convertido
+            self.gameTiles[local_atual_convertido] == Tile(local_atual_convertido,NullPiece())
+            print("Jogada feita com sucesso")
+        return False
+        #else:
+            #print("Escolha uma jogada com a cor correta (" + cor_do_jogador + ")")
+            #return True
     
 
     

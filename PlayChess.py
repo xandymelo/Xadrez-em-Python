@@ -2,6 +2,7 @@
 import os
 from boards.ChessBoard import Board
 from pieces.piece import Piece
+from boards.move import Move
 
 
 
@@ -78,3 +79,14 @@ allPieces = []
 
 #   pygame.display.update() #Atualizar partes da tela para exibições de software#
 #    clock.tick(60) #atualizar o relógio#
+
+
+
+cor1 = "Brancas"
+cor2 = 'Pretas'
+jogada1 = input("Jogador1: ")
+move = Move()
+move.movimentar_peca(cor1,jogada1)
+chessBoard.printBoard
+jogada2 = input("Jogador2: ")
+move.movimentar_peca(cor2,jogada2)

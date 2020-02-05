@@ -1,4 +1,4 @@
-from ChessBoard import Board
+from boards.ChessBoard import Board
 from pieces.piece import Piece
 
 class util(Piece):
