@@ -1,4 +1,7 @@
-import os
+import sys
+
+sys.path.append(r'C:\Users\xandy\Documents\GitHub\EstudoXadrez')
+
 from pieces.piece import Piece
 from boards.tile import Tile
 from pieces.nullpiece import NullPiece
@@ -8,6 +11,7 @@ from pieces.pawn import Pawn
 from pieces.knight import Knight
 from pieces.king import King
 from pieces.bishop import Bishop
+
 
 
 class Board(Piece):
