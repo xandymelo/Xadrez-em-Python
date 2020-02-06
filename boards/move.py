@@ -2,12 +2,13 @@ from boards.ChessBoard import Board
 from pieces.nullpiece import NullPiece
 from boards.utilMove import util
 from boards.tile import Tile
+from pieces.piece import Piece
 
 
 
 
 
-class Move(Board):
+class Move(Piece):
     def __init__(self,contagem_movimento_rei_pretas = 0,contagem_movimento_rei_brancas = 0,contagem_movimento_torre_rm_pretas = 0,contagem_movimento_torre_rm_brancas = 0,contagem_movimento_torre_rma_brancas = 0,contagem_movimento_torre_rma_pretas = 0):
         self.contagem_movimento_rei_pretas = contagem_movimento_rei_pretas
         self.contagem_movimento_rei_brancas = contagem_movimento_rei_brancas
@@ -56,9 +57,14 @@ class Move(Board):
         #if cor_do_jogador in nome_da_peca:
         #if (self.gameTiles[novo_local_convertido] is NullPiece):
         self.gameTiles[novo_local_convertido] == self.gameTiles[local_atual_convertido]
-        self.gameTiles[local_atual_convertido].pieceOnTile.position = novo_local_convertido
+        self.gameTiles[novo_local_convertido].pieceOnTile.position = novo_local_convertido
         self.gameTiles[local_atual_convertido] == Tile(local_atual_convertido,NullPiece())
         print("Jogada feita com sucesso")
+        for tile in self.gameTiles:
+            try:
+                print(tile.pieceOnTile.ToString())
+            except:
+                pass
         return False
         #else:
             #print("Escolha uma jogada com a cor correta (" + cor_do_jogador + ")")

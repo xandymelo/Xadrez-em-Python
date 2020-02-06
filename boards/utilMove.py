@@ -24,7 +24,7 @@ class util(Piece):
             novo_local += 7
         elif novo_local_provisorio[0] == "h":
             novo_local += 8
-            novo_local += (int(novo_local_provisorio[1]) - 1) * 8
+        novo_local += (int(novo_local_provisorio[1]) - 1) * 8
         return novo_local
     
 

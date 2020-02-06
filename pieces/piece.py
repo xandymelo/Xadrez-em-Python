@@ -14,8 +14,7 @@ class Piece():
     gameTiles = []
 
     def __init__(self):
-        self.position = None
-        self.alliance = None
+        pass
 
 
     def remover_movimentos_invalidos_diagonal_superior(self,cor_do_jogador,mov_possiveisDSD):
