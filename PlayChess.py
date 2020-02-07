@@ -15,7 +15,6 @@ from boards.move import Move
 
 chessBoard = Board()
 chessBoard.createBoard()
-chessBoard.printBoard()
 
 allTiles = []
 allPieces = []
@@ -84,12 +83,15 @@ allPieces = []
 
 cor1 = "Brancas"
 cor2 = 'Pretas'
-jogada1 = input("Jogador1: ")
+moviment = True
 move = Move()
-move.movimentar_peca(cor1,jogada1)
 chessBoard.printBoard()
+while moviment:
+    jogada1 = input("Jogador1: ")
+    moviment = move.movimentar_peca(cor1,jogada1)
+
 jogada2 = input("Jogador2: ")
 move.movimentar_peca(cor2,jogada2)
 chessBoard.printBoard()
 
-#DEBUGGGAR A FUNÇÃO CONVERTER_INPUTS
+#trazer a função peça cravada para este projeto#

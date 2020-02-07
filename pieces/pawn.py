@@ -10,7 +10,7 @@ class Pawn(Piece):
     def toString(self):
         return "P" if self.alliance == "Black" else "p"
 
-    def mov_possiveis(self):
+    def possible_mov(self):
         cor_do_jogador = self.alliance.upper()
         #if "Pretas" in self.gameTiles[self.position]:
             #cor_do_jogador == "PRETAS"

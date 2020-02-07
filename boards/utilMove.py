@@ -24,7 +24,7 @@ class util(Piece):
             novo_local += 7
         elif novo_local_provisorio[0] == "h":
             novo_local += 8
-        novo_local += (7 - int(novo_local_provisorio[1])) * 8
+        novo_local += (8 - int(novo_local_provisorio[1])) * 8
         return novo_local
     
 
@@ -68,4 +68,9 @@ class util(Piece):
             else:
                 return False
 
-
+    def verificar_se_mov_eh_valido(self,local_atual_convertido,novo_local_convertido):
+        mov_possiveis_da_peca = self.gameTiles[local_atual_convertido].pieceOnTile.possible_mov()
+        if (not (novo_local_convertido in mov_possiveis_da_peca)):
+            return False
+        else:
+            return True

@@ -39,17 +39,23 @@ class Move(Piece):
             cor_do_adversario = "Brancas"
 
         #criar a parte que verifica se a jogada é válida#
+        verificacao = ut.verificar_se_mov_eh_valido(local_atual_convertido,novo_local_convertido)
+        if not verificacao:
+            print('Movimento Inválido')
+            return True
+
+
         nome_da_peca = self.gameTiles[local_atual_convertido].pieceOnTile.toString()
-        if nome_da_peca == "ReiPretas":
+        if nome_da_peca == "K":
             self.contagem_movimento_rei_pretas += 1
-        if nome_da_peca == "ReiBrancas":
+        if nome_da_peca == "k":
             self.contagem_movimento_rei_brancas += 1
-        if nome_da_peca == "TorrePretas":
+        if nome_da_peca == "R":
             if local_atual_convertido == 64:
                 self.contagem_movimento_torre_rm_pretas += 1
             if local_atual_convertido == 57:
                 self.contagem_movimento_torre_rma_pretas += 1
-        if nome_da_peca == "TorreBrancas":
+        if nome_da_peca == "r":
             if local_atual_convertido == 8:
                 self.contagem_movimento_torre_rm_brancas += 1
             if local_atual_convertido == 1:
