@@ -60,11 +60,6 @@ class Move(Piece):
         self.gameTiles[novo_local_convertido].pieceOnTile.position = novo_local_convertido
         self.gameTiles[local_atual_convertido] == Tile(local_atual_convertido,NullPiece())
         print("Jogada feita com sucesso")
-        for tile in self.gameTiles:
-            try:
-                print(tile.pieceOnTile.ToString())
-            except:
-                pass
         return False
         #else:
             #print("Escolha uma jogada com a cor correta (" + cor_do_jogador + ")")

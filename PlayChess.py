@@ -92,5 +92,4 @@ jogada2 = input("Jogador2: ")
 move.movimentar_peca(cor2,jogada2)
 chessBoard.printBoard()
 
-
 #DEBUGGGAR A FUNÇÃO MOVIMENTAR_PECA
