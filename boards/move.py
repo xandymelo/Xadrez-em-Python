@@ -56,9 +56,9 @@ class Move(Piece):
                 self.contagem_movimento_torre_rma_brancas += 1
         #if cor_do_jogador in nome_da_peca:
         #if (self.gameTiles[novo_local_convertido] is NullPiece):
-        self.gameTiles[novo_local_convertido] == self.gameTiles[local_atual_convertido]
+        self.gameTiles[novo_local_convertido] = self.gameTiles[local_atual_convertido]
         self.gameTiles[novo_local_convertido].pieceOnTile.position = novo_local_convertido
-        self.gameTiles[local_atual_convertido] == Tile(local_atual_convertido,NullPiece())
+        self.gameTiles[local_atual_convertido] = Tile(local_atual_convertido,NullPiece())
         print("Jogada feita com sucesso")
         return False
         #else:
