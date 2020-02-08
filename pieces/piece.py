@@ -9,8 +9,10 @@ class Piece():
     primeira_e_segunda_linha = [x for x in range(1,17)]
     penultima_e_ultima_linha = [x for x in range(49,65)]
     ultima_coluna = [x for x in range(1,64) if x % 8 == 0]
-    ultima_linha = [x for x in range(56,65)]
     primeira_linha = [x for x in range(1,9)]
+    segunda_linha = [x for x in range(9,17)]
+    penultima_linha = [x for x in range(49,57)]
+    ultima_linha = [x for x in range(56,65)]
     gameTiles = []
 
     def __init__(self):

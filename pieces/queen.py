@@ -14,11 +14,6 @@ class Queen(Piece):
 
     def mov_possiveis(self):
         cor_do_jogador = self.alliance.upper()
-        #if "Pretas" in self.gameTiles[self.position]:
-            #cor_do_jogador == "PRETAS"
-        #elif "Brancas" in self.gameTiles[self.position]:
-            #cor_do_jogador == "BRANCAS"
-        #HD = horizontal direita#
         mov_possiveis_HD = [x for x in range (self.position + 1, 65)]
         while len (mov_possiveis_HD) > 8 - (self.position % 8):
             mov_possiveis_HD.pop ()

@@ -13,10 +13,6 @@ class King(Piece):
     
     def possible_mov(self):
         cor_do_jogador = self.alliance.upper()
-        #if "Pretas" in self.gameTiles[self.position]:
-            #cor_do_jogador == "PRETAS"
-        #elif "Brancas" in self.gameTiles[self.position]:
-            #cor_do_jogador == "BRANCAS"
         mov_possiveis = []
         mov_possiveis.append(self.position + 8)
         mov_possiveis.append(self.position - 8)
@@ -47,17 +43,13 @@ class King(Piece):
         if self.position - 7 in mov_possiveis:
             mov_possiveis.remove(self.position - 7)
 
-        if (cor_do_jogador == "PRETAS") or (cor_do_jogador == "NEGRAS"):
+        if (cor_do_jogador == "BLACK"):
             for c in mov_possiveis:
-                if c in self.todos_os_movimentos_possiveis("Brancas"):
+                if (c in self.todos_os_movimentos_possiveis("White")) or (self.gameTiles[c].pieceOnTile.toString().isupper()):
                     mov_possiveis.remove(c)
-                if "Pretas" in self.gameTiles[c]:
-                    mov_possiveis.remove(c)
-        if cor_do_jogador == "BRANCAS":
+        if cor_do_jogador == "WHITE":
             for c in mov_possiveis:
-                if c in self.todos_os_movimentos_possiveis("Pretas"):
-                    mov_possiveis.remove(c)
-                if "Brancas" in self.gameTiles[c]:
+                if (c in self.todos_os_movimentos_possiveis("Black")) or (self.gameTiles[c].pieceOnTile.toString().islower()):
                     mov_possiveis.remove(c)
         return mov_possiveis
         

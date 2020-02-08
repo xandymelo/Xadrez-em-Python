@@ -3,6 +3,7 @@ import os
 from boards.ChessBoard import Board
 from pieces.piece import Piece
 from boards.move import Move
+from pieces.pawn import Pawn
 
 
 
@@ -86,14 +87,15 @@ cor2 = 'Pretas'
 moviment = True
 move = Move()
 chessBoard.printBoard()
-while moviment:
-    jogada1 = input("Jogador1: ")
-    moviment = move.movimentar_peca(cor1,jogada1)
-chessBoard.printBoard()
+while True:
+    while moviment:
+        jogada1 = input("Jogador1: ")
+        moviment = move.movimentar_peca(cor1,jogada1)
+    chessBoard.printBoard()
+    moviment = True
+    while moviment:
+        jogada2 = input("Jogador2: ")
+        moviment = move.movimentar_peca(cor2,jogada2)
+    chessBoard.printBoard()
 
-jogada2 = input("Jogador2: ")
-move.movimentar_peca(cor2,jogada2)
-chessBoard.printBoard()
-
-#trazer a função peça cravada para este projeto#
-#ajeitar a função possbiel_mov dos peões (brancas subtraem no lugar de soma)#
+#adiconar a função peca_cravada na classe piece e adicionar a todas as funções possible_mov#
