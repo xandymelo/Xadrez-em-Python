@@ -89,9 +89,11 @@ chessBoard.printBoard()
 while moviment:
     jogada1 = input("Jogador1: ")
     moviment = move.movimentar_peca(cor1,jogada1)
+chessBoard.printBoard()
 
 jogada2 = input("Jogador2: ")
 move.movimentar_peca(cor2,jogada2)
 chessBoard.printBoard()
 
 #trazer a função peça cravada para este projeto#
+#ajeitar a função possbiel_mov dos peões (brancas subtraem no lugar de soma)#
