@@ -39,9 +39,9 @@ class Bishop(Piece):
         mov_possiveisDID.remove (self.position)
         mov_possiveisDID = self.remover_movimentos_invalidos_diagonal_inferior(cor_do_jogador,mov_possiveisDID)
         mov_possiveis = mov_possiveisDSD + mov_possiveisDID + mov_possiveisDSE + mov_possiveisDIE
-        for c in mov_possiveis:
-            if self.gameTiles[c] != " ":
-                print(self.gameTiles[c], self.gameTiles.index(self.gameTiles[c] + 1) )
-            else:
-                print(self.gameTiles.index(self.gameTiles[c] + 1))
+        #for c in mov_possiveis:
+            #if self.gameTiles[c].pieceOnTile.toString() != "-":
+                #print(self.gameTiles[c], self.gameTiles.index(self.gameTiles[c] + 1) )
+            #else:
+                #print(self.gameTiles.index(self.gameTiles[c] + 1))
         return mov_possiveis

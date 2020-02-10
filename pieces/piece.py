@@ -1,6 +1,4 @@
 
-
-
 class Piece():
 
     primeira_coluna = [x for x in range(1,65) if x % 8 == 1]
@@ -15,8 +13,10 @@ class Piece():
     ultima_linha = [x for x in range(56,65)]
     gameTiles = []
 
-    def __init__(self):
-        pass
+    def __init__(self,position = None, alliance = None):
+        self.position = position
+        self.alliance = alliance
+        
 
 
     def remover_movimentos_invalidos_diagonal_superior(self,cor_do_jogador,mov_possiveisDSD):
