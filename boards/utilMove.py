@@ -73,7 +73,7 @@ class util(Piece):
     
     def peca_cravada(self):
         if self.peca_ameacada(self.position):
-            self.gameTiles[self.position] = Tile(self.position, NullPiece())
+            self.gameTiles[self.position] = Tile(self.position, NullPiece())  #usar deepcopy
             if self.xeque(self.alliance):
                 pass
                 

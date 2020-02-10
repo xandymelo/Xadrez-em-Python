@@ -23,17 +23,20 @@ class Knight(Piece):
         mov_possiveis.append(self.position + 17)
         mov_possiveis.append(self.position - 17)
         if self.position in self.primeira_e_segunda_linha:
-            mov_possiveis.remove(self.position + 15)
-            mov_possiveis.remove(self.position + 17)
-        elif self.position in self.penultima_e_ultima_linha:
             mov_possiveis.remove(self.position - 17)
             mov_possiveis.remove(self.position - 15)
-        elif self.position in self.primeira_e_segunda_coluna:
+        if self.position in self.penultima_e_ultima_linha:
+            mov_possiveis.remove(self.position + 15)
+            mov_possiveis.remove(self.position + 17)
+        if self.position in self.primeira_e_segunda_coluna:
             mov_possiveis.remove(self.position - 10)
             mov_possiveis.remove(self.position + 6)
-        elif self.position in self.penultima_e_ultima_coluna:
+        if self.position in self.penultima_e_ultima_coluna:
             mov_possiveis.remove(self.position + 10)
             mov_possiveis.remove(self.position - 6)
+        for c in mov_possiveis:
+            if c > 64 or c < 1:
+                mov_possiveis.remove(c)
         if (cor_do_jogador == "BLACK"):
             for c in mov_possiveis:
                 if self.gameTiles[c].pieceOnTile.toString().isupper():

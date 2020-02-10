@@ -87,6 +87,7 @@ cor2 = 'Pretas'
 moviment = True
 move = Move()
 chessBoard.printBoard()
+chessBoard.gameTiles[58].pieceOnTile.possible_mov()
 while True:
     while moviment:
         jogada1 = input("Jogador1: ")
