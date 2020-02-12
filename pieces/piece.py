@@ -72,6 +72,8 @@ class Piece():
         if cor_do_jogador == "WHITE":
             for c in self.gameTiles:
                 if c.pieceOnTile.toString().islower():
+                    if c.pieceOnTile.toString() == "p":
+                        pass
                     for d in c.pieceOnTile.possible_mov():
                         if d not in mov_possiveis:
                             mov_possiveis.append(d)

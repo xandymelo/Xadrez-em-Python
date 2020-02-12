@@ -26,7 +26,7 @@ class Board(Piece):
         for c in range(65):
             self.gameTiles.append(None)
         
-        for tile in range(1,65):
+        for tile in range(65):
             self.gameTiles[tile] = Tile(tile, NullPiece())
         
 
