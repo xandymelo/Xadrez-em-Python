@@ -87,8 +87,7 @@ cor2 = 'Pretas'
 moviment = True
 move = Move()
 chessBoard.printBoard()
-p = Piece()
-p.todos_os_movimentos_possiveis("WHITE")
+#chessBoard.gameTiles[28].pieceOnTile.possible_mov()
 while True:
     while moviment:
         jogada1 = input("Jogador1: ")
@@ -101,5 +100,6 @@ while True:
     chessBoard.printBoard()
 
 
-#ajeitar a função todos os movimentos possiveis, a questão dos peões (AJEITAR POSSSIBLE_MOV DA TORRE)#
+#ajeitar a função todos os movimentos possiveis, a questão dos peões (ERRO NA FUNÇÃO DO KING)#
 #adiconar a função peca_cravada na classe piece e adicionar a todas as funções possible_mov#
+

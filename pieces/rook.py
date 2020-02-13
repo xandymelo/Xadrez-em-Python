@@ -23,7 +23,8 @@ class Rook(Piece):
         mov_possiveis_HE = [x for x in range (self.position, 0, -1)]
         while len (mov_possiveis_HE) > ((self.position) % 8):
             mov_possiveis_HE.pop ()
-        mov_possiveis_HE.remove (self.position)
+        if self.position in mov_possiveis_HE:
+            mov_possiveis_HE.remove (self.position)
         mov_possiveis_HE = self.remover_movimentos_invalidos_diagonal_inferior(cor_do_jogador,mov_possiveis_HE)
         #VS = Vertical Superior#
         mov_possiveis_VS = [x for x in range(self.position,65,8)]

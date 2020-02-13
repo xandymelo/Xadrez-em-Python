@@ -1,6 +1,7 @@
+import sys
 from pieces.piece import Piece
 
-
+sys.setrecursionlimit(1000)
 class King(Piece):
 
     
