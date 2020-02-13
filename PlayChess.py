@@ -101,5 +101,5 @@ while True:
     chessBoard.printBoard()
 
 
-#ajeitar a função todos os movimentos possiveis, a questão dos peões#
+#ajeitar a função todos os movimentos possiveis, a questão dos peões (AJEITAR POSSSIBLE_MOV DA TORRE)#
 #adiconar a função peca_cravada na classe piece e adicionar a todas as funções possible_mov#

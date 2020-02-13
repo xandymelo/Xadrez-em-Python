@@ -12,7 +12,7 @@ class Queen(Piece):
     def toString(self):
         return "Q" if self.alliance == "Black" else "q"
 
-    def mov_possiveis(self):
+    def possible_mov(self):
         cor_do_jogador = self.alliance.upper()
         mov_possiveis_HD = [x for x in range (self.position + 1, 65)]
         while len (mov_possiveis_HD) > 8 - (self.position % 8):

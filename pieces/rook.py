@@ -12,7 +12,7 @@ class Rook(Piece):
     def toString(self):
         return "R" if self.alliance == "Black" else "r"
 
-    def mov_possiveis(self):
+    def possible_mov(self):
         cor_do_jogador = self.alliance.upper()
         #HD = horizontal direita#
         mov_possiveis_HD = [x for x in range (self.position + 1, 65)]
