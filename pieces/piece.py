@@ -80,8 +80,7 @@ class Piece():
                     
                     else:
                         for d in c.pieceOnTile.possible_mov():
-                            if d not in mov_possiveis:
-                                mov_possiveis.append(d)
+                            mov_possiveis.append(d)
         if cor_do_jogador == "WHITE":
             for c in self.gameTiles:
                 if c.pieceOnTile.toString().islower():
@@ -99,8 +98,10 @@ class Piece():
 
                     else:
                         for d in c.pieceOnTile.possible_mov():
-                            if d not in mov_possiveis:
-                                mov_possiveis.append(d)
-            #mov_possiveis = torre(self.gameTiles.index("Torre2Brancas"),cor_do_jogador).mov_possiveis(self.gameTiles) + torre(self.gameTiles.index("TorreBrancas"),cor_do_jogador).mov_possiveis(self.gameTiles) + bispo.bispo(self.gameTiles.index("BispoPBrancas"),cor_do_jogador).mov_possiveis(self.gameTiles) + bispo.bispo(self.gameTiles.index("BispoBBrancas"),cor_do_jogador).mov_possiveis(self.gameTiles) + cavalo(self.gameTiles.index("CavaloBrancas"),cor_do_jogador).mov_possiveis(self.gameTiles) + cavalo(self.gameTiles.index("Cavalo2Brancas"),cor_do_jogador).mov_possiveis(self.gameTiles) + dama(self.gameTiles.index("DamaBrancas"),cor_do_jogador).mov_possiveis(self.gameTiles) + peao(self.gameTiles.index("peãoBrancas1"),cor_do_jogador).mov_possiveis(self.gameTiles) + peao(self.gameTiles.index("peãoBrancas2"),cor_do_jogador).mov_possiveis(self.gameTiles) + peao(self.gameTiles.index("peãoBrancas3"),cor_do_jogador).mov_possiveis(self.gameTiles) + peao(self.gameTiles.index("peãoBrancas4"),cor_do_jogador).mov_possiveis(self.gameTiles) + peao(self.gameTiles.index("peãoBrancas5"),cor_do_jogador).mov_possiveis(self.gameTiles) + peao(self.gameTiles.index("peãoBrancas6"),cor_do_jogador).mov_possiveis(self.gameTiles) + peao(self.gameTiles.index("peãoBrancas7"),cor_do_jogador).mov_possiveis(self.gameTiles) + peao(self.gameTiles.index("peãoBrancas8"),cor_do_jogador).mov_possiveis(self.gameTiles)
+                            mov_possiveis.append(d)
+            
+        mov_possiveis = set(mov_possiveis)
+        mov_possiveis = list(mov_possiveis)
+        #mov_possiveis = torre(self.gameTiles.index("Torre2Brancas"),cor_do_jogador).mov_possiveis(self.gameTiles) + torre(self.gameTiles.index("TorreBrancas"),cor_do_jogador).mov_possiveis(self.gameTiles) + bispo.bispo(self.gameTiles.index("BispoPBrancas"),cor_do_jogador).mov_possiveis(self.gameTiles) + bispo.bispo(self.gameTiles.index("BispoBBrancas"),cor_do_jogador).mov_possiveis(self.gameTiles) + cavalo(self.gameTiles.index("CavaloBrancas"),cor_do_jogador).mov_possiveis(self.gameTiles) + cavalo(self.gameTiles.index("Cavalo2Brancas"),cor_do_jogador).mov_possiveis(self.gameTiles) + dama(self.gameTiles.index("DamaBrancas"),cor_do_jogador).mov_possiveis(self.gameTiles) + peao(self.gameTiles.index("peãoBrancas1"),cor_do_jogador).mov_possiveis(self.gameTiles) + peao(self.gameTiles.index("peãoBrancas2"),cor_do_jogador).mov_possiveis(self.gameTiles) + peao(self.gameTiles.index("peãoBrancas3"),cor_do_jogador).mov_possiveis(self.gameTiles) + peao(self.gameTiles.index("peãoBrancas4"),cor_do_jogador).mov_possiveis(self.gameTiles) + peao(self.gameTiles.index("peãoBrancas5"),cor_do_jogador).mov_possiveis(self.gameTiles) + peao(self.gameTiles.index("peãoBrancas6"),cor_do_jogador).mov_possiveis(self.gameTiles) + peao(self.gameTiles.index("peãoBrancas7"),cor_do_jogador).mov_possiveis(self.gameTiles) + peao(self.gameTiles.index("peãoBrancas8"),cor_do_jogador).mov_possiveis(self.gameTiles)
         return mov_possiveis
     

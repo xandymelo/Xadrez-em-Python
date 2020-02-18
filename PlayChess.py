@@ -89,6 +89,7 @@ moviment = True
 move = Move()
 chessBoard.printBoard()
 #p.todos_os_movimentos_possiveis("Black")
+chessBoard.gameTiles[5].pieceOnTile.possible_mov()  #debuggar isso (O REI ESTÁ COMENDO PEÇAS DA PROPRIA COR)
 
 while True:
     while moviment:
