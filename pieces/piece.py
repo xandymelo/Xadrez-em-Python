@@ -68,13 +68,16 @@ class Piece():
             for c in self.gameTiles:
                 if c.pieceOnTile.toString().isupper():
                     if c.pieceOnTile.toString() == "P":
-                        if c in self.primeira_coluna:
+                        if c.pieceOnTile.position in self.primeira_coluna:
                             mov_possiveis.append(c.pieceOnTile.position + 9)
-                        elif c in self.ultima_coluna:
+                        elif c.pieceOnTile.position in self.ultima_coluna:
                             mov_possiveis.append(c.pieceOnTile.position + 7)
                         else:
                             mov_possiveis.append(c.pieceOnTile.position + 7)
                             mov_possiveis.append(c.pieceOnTile.position + 9)
+                    elif c.pieceOnTile.toString() == "K":
+                        pass
+                    
                     else:
                         for d in c.pieceOnTile.possible_mov():
                             if d not in mov_possiveis:
@@ -83,13 +86,16 @@ class Piece():
             for c in self.gameTiles:
                 if c.pieceOnTile.toString().islower():
                     if c.pieceOnTile.toString() == "p":
-                        if c in self.primeira_coluna:
+                        if c.pieceOnTile.position in self.primeira_coluna:
                             mov_possiveis.append(c.pieceOnTile.position - 7)
-                        elif c in self.ultima_coluna:
+                        elif c.pieceOnTile.position in self.ultima_coluna:
                             mov_possiveis.append(c.pieceOnTile.position - 9)
                         else:
                             mov_possiveis.append(c.pieceOnTile.position - 7)
                             mov_possiveis.append(c.pieceOnTile.position - 9)
+                    
+                    elif c.pieceOnTile.toString() == "k":
+                        pass
 
                     else:
                         for d in c.pieceOnTile.possible_mov():

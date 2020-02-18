@@ -16,6 +16,7 @@ from pieces.pawn import Pawn
 
 chessBoard = Board()
 chessBoard.createBoard()
+p = Piece()
 
 allTiles = []
 allPieces = []
@@ -87,7 +88,8 @@ cor2 = 'Pretas'
 moviment = True
 move = Move()
 chessBoard.printBoard()
-#chessBoard.gameTiles[28].pieceOnTile.possible_mov()
+x = p.todos_os_movimentos_possiveis("White")
+
 while True:
     while moviment:
         jogada1 = input("Jogador1: ")
