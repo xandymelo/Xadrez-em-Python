@@ -88,7 +88,7 @@ cor2 = 'Pretas'
 moviment = True
 move = Move()
 chessBoard.printBoard()
-p.todos_os_movimentos_possiveis("Black")
+#p.todos_os_movimentos_possiveis("Black")
 
 while True:
     while moviment:
@@ -101,7 +101,7 @@ while True:
         moviment = move.movimentar_peca(cor2,jogada2)
     chessBoard.printBoard()
 
-#AJEITAR AS FUNÇÕES REMOVER_MOVIMENTOS_DIAGONAL_INFERIOR E SUPERIOR
-#ajeitar a função todos os movimentos possiveis, a questão dos peões (debuggar todos_os_mov_possiveis)#
+
+#(debuggar todos_os_mov_possiveis)#
 #adiconar a função peca_cravada na classe piece e adicionar a todas as funções possible_mov#
 

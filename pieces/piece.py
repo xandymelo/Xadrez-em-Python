@@ -19,42 +19,42 @@ class Piece():
         
 
 
-    def remover_movimentos_invalidos_diagonal_superior(self,cor_do_jogador,mov_possiveisDSD):
-        if cor_do_jogador == "PRETAS" or cor_do_jogador == "NEGRAS":
+    def remover_movimentos_invalidos_diagonal_superior(self,mov_possiveisDSD):
+        if self.alliance == "Black":
             for c in mov_possiveisDSD:
-                if "Pretas" in self.gameTiles[c]:
+                if self.gameTiles[c].pieceOnTile.toString().isupper():
                     mov_possiveisDSD = [x for x in mov_possiveisDSD if x < c]
                     break
-                elif "Brancas" in self.gameTiles[c]:
+                elif self.gameTiles[c].pieceOnTile.toString().islower():
                     mov_possiveisDSD = [x for x in mov_possiveisDSD if x <= c]
                     break
                 
-        if cor_do_jogador == "BRANCAS":
+        if self.alliance == "White":
             for c in mov_possiveisDSD:
-                if "Brancas" in self.gameTiles[c]:
+                if self.gameTiles[c].pieceOnTile.toString().islower():
                     mov_possiveisDSD = [x for x in mov_possiveisDSD if x < c]
                     break
-                elif "Pretas" in self.gameTiles[c]:
+                elif self.gameTiles[c].pieceOnTile.toString().isupper():
                     mov_possiveisDSD = [x for x in mov_possiveisDSD if x <= c]
                     break
         return mov_possiveisDSD
     
-    def remover_movimentos_invalidos_diagonal_inferior(self,cor_do_jogador,mov_possiveisDIE):
-        if cor_do_jogador == "PRETAS" or cor_do_jogador == "NEGRAS":
+    def remover_movimentos_invalidos_diagonal_inferior(self,mov_possiveisDIE):
+        if self.alliance == "Black":
             for c in mov_possiveisDIE:
-                if "Pretas" in self.gameTiles[c]:
+                if self.gameTiles[c].pieceOnTile.toString().isupper():
                     mov_possiveisDIE = [x for x in mov_possiveisDIE if x > c]
                     break
-                elif "Brancas" in self.gameTiles[c]:
+                elif self.gameTiles[c].pieceOnTile.toString().islower():
                     mov_possiveisDIE = [x for x in mov_possiveisDIE if x >= c]
                     break
                 
-        if cor_do_jogador == "BRANCAS":
+        if self.alliance == "White":
             for c in mov_possiveisDIE:
-                if "Brancas" in self.gameTiles[c]:
+                if self.gameTiles[c].pieceOnTile.toString().islower():
                     mov_possiveisDIE = [x for x in mov_possiveisDIE if x > c]
                     break
-                elif "Pretas" in self.gameTiles[c]:
+                elif self.gameTiles[c].pieceOnTile.toString().isupper():
                     mov_possiveisDIE = [x for x in mov_possiveisDIE if x >= c]
                     break
         return mov_possiveisDIE
