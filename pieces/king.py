@@ -44,13 +44,16 @@ class King(Piece):
             if self.position - 7 in mov_possiveis:
                 mov_possiveis.remove(self.position - 7)
 
+        remover = []
         if (cor_do_jogador == "BLACK"):
             for c in mov_possiveis:
                 if (c in self.todos_os_movimentos_possiveis("White")) or (self.gameTiles[c].pieceOnTile.toString().isupper()):
-                    mov_possiveis.remove(c)
+                    remover.append(c)
         elif cor_do_jogador == "WHITE":
             for c in mov_possiveis:
                 if (c in self.todos_os_movimentos_possiveis("Black")) or (self.gameTiles[c].pieceOnTile.toString().islower()):
-                    mov_possiveis.remove(c)
+                    remover.append(c)
+        for c in remover:
+            mov_possiveis.remove(c)
         return mov_possiveis
         

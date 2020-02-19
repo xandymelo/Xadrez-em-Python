@@ -103,6 +103,5 @@ while True:
     chessBoard.printBoard()
 
 
-#(debuggar todos_os_mov_possiveis)#
 #adiconar a função peca_cravada na classe piece e adicionar a todas as funções possible_mov#
 
