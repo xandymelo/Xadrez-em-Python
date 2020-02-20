@@ -57,26 +57,17 @@ class util(Piece):
 
     def peca_ameacada(self,local_atual):
         cor_do_jogador_adversario = ""
-        if self.gameTiles[local_atual].count("Pretas") == 1:
+        if self.gameTiles[local_atual].pieceOnTile.toString().isupper():
             cor_do_jogador_adversario = "Brancas"
-        else:
+        elif self.gameTiles[local_atual].pieceOnTile.toString().islower():
             cor_do_jogador_adversario = "Pretas"
         if local_atual in self.todos_os_movimentos_possiveis(cor_do_jogador_adversario):
-            return 1
-        else:
-            return 0
-        mov_possiveis = self.todos_os_movimentos_possiveis("Brancas") + self.todos_os_movimentos_possiveis("Pretas")
-        if self.gameTiles[local_atual] == "" and (local_atual in mov_possiveis):
-            return 1
-        else:
-            return 0
-    
-    def peca_cravada(self):
-        if self.peca_ameacada(self.position):
-            self.gameTiles[self.position] = Tile(self.position, NullPiece())  #usar deepcopy
-            if self.xeque(self.alliance):
-                pass
-                
-            
+            return True
         else:
             return False
+        mov_possiveis = self.todos_os_movimentos_possiveis("Brancas") + self.todos_os_movimentos_possiveis("Pretas")
+        if self.gameTiles[local_atual].pieceOnTile.toString() == '-' and (local_atual in mov_possiveis):
+            return True
+        else:
+            return False
+    
