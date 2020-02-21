@@ -85,13 +85,14 @@ allPieces = []
 
 cor1 = "Brancas"
 cor2 = 'Pretas'
-moviment = True
+
 move = Move()
 chessBoard.printBoard()
 #p.todos_os_movimentos_possiveis("Black")
-chessBoard.gameTiles[5].pieceOnTile.possible_mov()  #debuggar isso (O REI ESTÁ COMENDO PEÇAS DA PROPRIA COR)
+#chessBoard.gameTiles[5].pieceOnTile.possible_mov()  #debuggar isso (O REI ESTÁ COMENDO PEÇAS DA PROPRIA COR)
 
 while True:
+    moviment = True
     while moviment:
         jogada1 = input("Jogador1: ")
         moviment = move.movimentar_peca(cor1,jogada1)
