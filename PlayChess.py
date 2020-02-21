@@ -103,5 +103,5 @@ while True:
     chessBoard.printBoard()
 
 
-#testar as outras peças e testar o roque#
+#testar o roque#
 

@@ -1,7 +1,7 @@
-from boards.ChessBoard import Board
 from pieces.piece import Piece
 from boards.tile import Tile
 from pieces.nullpiece import NullPiece
+import copy
 
 class util(Piece):
     def __init__(self):
@@ -68,6 +68,19 @@ class util(Piece):
         mov_possiveis = self.todos_os_movimentos_possiveis("Brancas") + self.todos_os_movimentos_possiveis("Pretas")
         if self.gameTiles[local_atual].pieceOnTile.toString() == '-' and (local_atual in mov_possiveis):
             return True
+        else:
+            return False
+
+    def peca_cravada(self):
+        if self.peca_ameacada(self.position):
+            x = copy.deepcopy(self.gameTiles[self.position])
+            self.gameTiles[self.position] = Tile(self.position, NullPiece())  #usar deepcopy
+            if self.xeque(self.alliance):
+                self.gameTiles[self.position] = x
+                return True
+            else:
+                self.gameTiles[self.position] = x
+                return False   
         else:
             return False
     
