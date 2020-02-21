@@ -25,6 +25,9 @@ class Move(Piece):
     #AJEITAR ESSA FUNÇÃO E COLOCAR OUTRAS#
     def movimentar_peca(self,cor_do_jogador,input): #mudar o formato do input para o formatov'd2d4'#
         ut = util()
+        if input == 'castle':
+            self.roque_menor(cor_do_jogador)
+            return False
         local_atual = input[0] + input[1]
         novo_local = input[2] + input[3]
         local_atual_convertido = ut.converter_inputs(local_atual)
@@ -85,17 +88,19 @@ class Move(Piece):
         cor_do_jogador = cor_do_jogador.upper()
         if cor_do_jogador == "BRANCAS":
             if (self.contagem_movimento_rei_brancas > 0) or (self.contagem_movimento_torre_rm_brancas > 0) or (ut.peca_ameacada(6)) or (ut.peca_ameacada(7)) or (self.gameTiles[6] != "") or (self.gameTiles[7] != "") or (ut.xeque(cor_do_jogador)):
-                return 0
+                return False
             else:
-                self.movimentar_peca(cor_do_jogador,"Rg1")
-                self.movimentar_peca(cor_do_jogador,"Tf1")
-                return 1
+                self.gameTiles[63] = Tile(63, King(63, "White"))
+                self.gameTiles[62] = Tile(62, Rook(62, "White"))
+                self.gameTiles[61] = Tile(tile, NullPiece())
+                self.gameTiles[64] = Tile(tile, NullPiece())
+                return True
         if cor_do_jogador == "PRETAS" or (cor_do_jogador == "NEGRAS"):
             if (self.contagem_movimento_rei_pretas > 0) or (self.contagem_movimento_torre_rm_pretas > 0) or (ut.peca_ameacada(62)) or (ut.peca_ameacada(63)) or (self.gameTiles[63] != "") or (self.gameTiles[62] != "") or (ut.xeque(cor_do_jogador)):
-                return 0
+                return False
             else:
                 self.movimentar_peca(cor_do_jogador,"Rg8")
                 self.movimentar_peca(cor_do_jogador,"Tf8")
-                return 1
+                return True
 
 
