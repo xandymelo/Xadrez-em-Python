@@ -104,5 +104,6 @@ while True:
     chessBoard.printBoard()
 
 
+#tentei fazer q o rei comesse uma peça do msm time e deu erro#
 #ajeitar a função peça ameaçada, mesmo sem ter peça na casa, tem que ter a cor definida#
 
