@@ -83,8 +83,8 @@ allPieces = []
 
 
 
-cor1 = "Brancas"
-cor2 = 'Pretas'
+cor1 = "white"
+cor2 = 'Black'
 
 move = Move()
 chessBoard.printBoard()
@@ -104,5 +104,5 @@ while True:
     chessBoard.printBoard()
 
 
-#testar o roque#
+#ajeitar a função peça ameaçada, mesmo sem ter peça na casa, tem que ter a cor definida#
 

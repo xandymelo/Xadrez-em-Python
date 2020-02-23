@@ -26,6 +26,7 @@ class Move(Piece):
     def movimentar_peca(self,cor_do_jogador,input): #mudar o formato do input para o formatov'd2d4'#
         ut = util()
         if input == 'castle':
+            print("Roque feito com sucesso")
             self.roque_menor(cor_do_jogador)
             return False
         local_atual = input[0] + input[1]
@@ -86,8 +87,8 @@ class Move(Piece):
     def roque_menor(self,cor_do_jogador):
         ut = util()
         cor_do_jogador = cor_do_jogador.upper()
-        if cor_do_jogador == "BRANCAS":
-            if (self.contagem_movimento_rei_brancas > 0) or (self.contagem_movimento_torre_rm_brancas > 0) or (ut.peca_ameacada(6)) or (ut.peca_ameacada(7)) or (self.gameTiles[6] != "") or (self.gameTiles[7] != "") or (ut.xeque(cor_do_jogador)):
+        if cor_do_jogador == "WHITE":
+            if (self.contagem_movimento_rei_brancas > 0) or (self.contagem_movimento_torre_rm_brancas > 0) or (ut.peca_ameacada(62)) or (ut.peca_ameacada(63)) or (self.gameTiles[62].pieceOnTile is not NullPiece ) or (self.gameTiles[63].pieceOnTile is not NullPiece) or (ut.xeque(cor_do_jogador)):
                 return False
             else:
                 self.gameTiles[63] = Tile(63, King(63, "White"))
@@ -95,7 +96,7 @@ class Move(Piece):
                 self.gameTiles[61] = Tile(tile, NullPiece())
                 self.gameTiles[64] = Tile(tile, NullPiece())
                 return True
-        if cor_do_jogador == "PRETAS" or (cor_do_jogador == "NEGRAS"):
+        if cor_do_jogador == 'BLACK':
             if (self.contagem_movimento_rei_pretas > 0) or (self.contagem_movimento_torre_rm_pretas > 0) or (ut.peca_ameacada(62)) or (ut.peca_ameacada(63)) or (self.gameTiles[63] != "") or (self.gameTiles[62] != "") or (ut.xeque(cor_do_jogador)):
                 return False
             else:

@@ -62,8 +62,8 @@ class Board(Piece):
         self.gameTiles[59] = Tile(59, Bishop(59, "White"))
         self.gameTiles[60] = Tile(60, Queen(60, "White"))
         self.gameTiles[61] = Tile(61, King(61, "White"))
-        self.gameTiles[62] = Tile(62, Bishop(62, "White"))
-        self.gameTiles[63] = Tile(63, Knight(63, "White"))
+        #self.gameTiles[62] = Tile(62, Bishop(62, "White"))
+        #self.gameTiles[63] = Tile(63, Knight(63, "White"))
         self.gameTiles[64] = Tile(64, Rook(64, "White"))
 
     def printBoard(self):
