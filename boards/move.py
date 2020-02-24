@@ -3,6 +3,8 @@ from pieces.nullpiece import NullPiece
 from boards.utilMove import util
 from boards.tile import Tile
 from pieces.piece import Piece
+from pieces.king import King
+from pieces.rook import Rook
 
 
 
@@ -91,13 +93,13 @@ class Move(Piece):
         ut = util()
         cor_do_jogador = cor_do_jogador.upper()
         if cor_do_jogador == "WHITE":
-            if (self.contagem_movimento_rei_brancas > 0) or (self.contagem_movimento_torre_rm_brancas > 0) or (ut.peca_ameacada(62,cor_do_jogador)) or (ut.peca_ameacada(63,cor_do_jogador)) or (self.gameTiles[62].pieceOnTile is not NullPiece ) or (self.gameTiles[63].pieceOnTile is not NullPiece) or (ut.xeque(cor_do_jogador)):
+            if (self.contagem_movimento_rei_brancas > 0) or (self.contagem_movimento_torre_rm_brancas > 0) or (ut.peca_ameacada(62,cor_do_jogador)) or (ut.peca_ameacada(63,cor_do_jogador)) or (type(self.gameTiles[62].pieceOnTile) is not NullPiece ) or (type(self.gameTiles[63].pieceOnTile) is not NullPiece) or (ut.xeque(cor_do_jogador)):
                 return True
             else:
                 self.gameTiles[63] = Tile(63, King(63, "White"))
                 self.gameTiles[62] = Tile(62, Rook(62, "White"))
-                self.gameTiles[61] = Tile(tile, NullPiece())
-                self.gameTiles[64] = Tile(tile, NullPiece())
+                self.gameTiles[61] = Tile(61, NullPiece())
+                self.gameTiles[64] = Tile(64, NullPiece())
                 return False
         if cor_do_jogador == 'BLACK':
             if (self.contagem_movimento_rei_pretas > 0) or (self.contagem_movimento_torre_rm_pretas > 0) or (ut.peca_ameacada(62,cor_do_jogador)) or (ut.peca_ameacada(63,cor_do_jogador)) or (self.gameTiles[63] != "") or (self.gameTiles[62] != "") or (ut.xeque(cor_do_jogador)):
