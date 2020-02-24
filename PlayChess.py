@@ -104,5 +104,6 @@ while True:
     chessBoard.printBoard()
 
 
-#ajeitar a parte das pretas do roque menor
+#ajeitar a parte das pretas do roque maior
+#dividir a função movimentar_peça criando subfunções em utilmove
 

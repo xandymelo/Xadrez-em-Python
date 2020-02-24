@@ -102,11 +102,13 @@ class Move(Piece):
                 self.gameTiles[64] = Tile(64, NullPiece())
                 return False
         if cor_do_jogador == 'BLACK':
-            if (self.contagem_movimento_rei_pretas > 0) or (self.contagem_movimento_torre_rm_pretas > 0) or (ut.peca_ameacada(62,cor_do_jogador)) or (ut.peca_ameacada(63,cor_do_jogador)) or (self.gameTiles[63] != "") or (self.gameTiles[62] != "") or (ut.xeque(cor_do_jogador)):
+            if (self.contagem_movimento_rei_pretas > 0) or (self.contagem_movimento_torre_rm_pretas > 0) or (ut.peca_ameacada(6,cor_do_jogador)) or (ut.peca_ameacada(7,cor_do_jogador)) or (type(self.gameTiles[6].pieceOnTile) is not NullPiece) or (type(self.gameTiles[7].pieceOnTile) is not NullPiece) or (ut.xeque(cor_do_jogador)):
                 return True
             else:
-                self.movimentar_peca(cor_do_jogador,"Rg8")
-                self.movimentar_peca(cor_do_jogador,"Tf8")
+                self.gameTiles[6] = Tile(6,Rook(6,"Black"))
+                self.gameTiles[7] = Tile(7, King(7, "Black"))
+                self.gameTiles[5] = Tile(5, NullPiece())
+                self.gameTiles[8] = Tile(8, NullPiece())
                 return False
 
 
