@@ -34,6 +34,14 @@ class Move(Piece):
             else:
                 print("Roque feito com sucesso")
             return x
+        elif input == 'bcastle':
+            x = self.roque_maior(cor_do_jogador)
+            if x:
+                print("Não é possível fazer o roque")
+            else:
+                print("Roque feito com sucesso")
+            return x
+
         local_atual = input[0] + input[1]
         novo_local = input[2] + input[3]
         local_atual_convertido = ut.converter_inputs(local_atual)
@@ -109,6 +117,29 @@ class Move(Piece):
                 self.gameTiles[7] = Tile(7, King(7, "Black"))
                 self.gameTiles[5] = Tile(5, NullPiece())
                 self.gameTiles[8] = Tile(8, NullPiece())
+                return False
+
+
+    def roque_maior(self,cor_do_jogador):
+        ut = util()
+        cor_do_jogador = cor_do_jogador.upper()
+        if cor_do_jogador == "WHITE":
+            if (self.contagem_movimento_rei_brancas > 0) or (self.contagem_movimento_torre_rma_brancas > 0) or (ut.peca_ameacada(60,cor_do_jogador)) or (ut.peca_ameacada(59,cor_do_jogador)) or (ut.peca_ameacada(58,cor_do_jogador)) or (type(self.gameTiles[60].pieceOnTile) is not NullPiece ) or (type(self.gameTiles[59].pieceOnTile) is not NullPiece) or (type(self.gameTiles[58].pieceOnTile) is not NullPiece) or (ut.xeque(cor_do_jogador)):
+                return True
+            else:
+                self.gameTiles[59] = Tile(59, King(59, "White"))
+                self.gameTiles[60] = Tile(60, Rook(60, "White"))
+                self.gameTiles[61] = Tile(61, NullPiece())
+                self.gameTiles[57] = Tile(64, NullPiece())
+                return False
+        if cor_do_jogador == 'BLACK':
+            if (self.contagem_movimento_rei_pretas > 0) or (self.contagem_movimento_torre_rma_pretas > 0) or (ut.peca_ameacada(4,cor_do_jogador)) or (ut.peca_ameacada(3,cor_do_jogador)) or (ut.peca_ameacada(2,cor_do_jogador)) or (type(self.gameTiles[4].pieceOnTile) is not NullPiece) or (type(self.gameTiles[3].pieceOnTile) is not NullPiece) or (type(self.gameTiles[2].pieceOnTile) is not NullPiece) or (ut.xeque(cor_do_jogador)):
+                return True
+            else:
+                self.gameTiles[4] = Tile(4,Rook(4,"Black"))
+                self.gameTiles[3] = Tile(3, King(3, "Black"))
+                self.gameTiles[5] = Tile(5, NullPiece())
+                self.gameTiles[1] = Tile(1, NullPiece())
                 return False
 
 
