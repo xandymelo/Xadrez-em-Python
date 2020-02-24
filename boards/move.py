@@ -25,10 +25,13 @@ class Move(Piece):
     #AJEITAR ESSA FUNÇÃO E COLOCAR OUTRAS#
     def movimentar_peca(self,cor_do_jogador,input): #mudar o formato do input para o formatov'd2d4'#
         ut = util()
-        if input == 'castle':
-            print("Roque feito com sucesso")
-            self.roque_menor(cor_do_jogador)
-            return False
+        if input == 'castle': 
+            x = self.roque_menor(cor_do_jogador)
+            if x:
+                print("Não é possível fazer o roque")
+            else:
+                print("Roque feito com sucesso")
+            return x
         local_atual = input[0] + input[1]
         novo_local = input[2] + input[3]
         local_atual_convertido = ut.converter_inputs(local_atual)
@@ -88,20 +91,20 @@ class Move(Piece):
         ut = util()
         cor_do_jogador = cor_do_jogador.upper()
         if cor_do_jogador == "WHITE":
-            if (self.contagem_movimento_rei_brancas > 0) or (self.contagem_movimento_torre_rm_brancas > 0) or (ut.peca_ameacada(62)) or (ut.peca_ameacada(63)) or (self.gameTiles[62].pieceOnTile is not NullPiece ) or (self.gameTiles[63].pieceOnTile is not NullPiece) or (ut.xeque(cor_do_jogador)):
-                return False
+            if (self.contagem_movimento_rei_brancas > 0) or (self.contagem_movimento_torre_rm_brancas > 0) or (ut.peca_ameacada(62,cor_do_jogador)) or (ut.peca_ameacada(63,cor_do_jogador)) or (self.gameTiles[62].pieceOnTile is not NullPiece ) or (self.gameTiles[63].pieceOnTile is not NullPiece) or (ut.xeque(cor_do_jogador)):
+                return True
             else:
                 self.gameTiles[63] = Tile(63, King(63, "White"))
                 self.gameTiles[62] = Tile(62, Rook(62, "White"))
                 self.gameTiles[61] = Tile(tile, NullPiece())
                 self.gameTiles[64] = Tile(tile, NullPiece())
-                return True
-        if cor_do_jogador == 'BLACK':
-            if (self.contagem_movimento_rei_pretas > 0) or (self.contagem_movimento_torre_rm_pretas > 0) or (ut.peca_ameacada(62)) or (ut.peca_ameacada(63)) or (self.gameTiles[63] != "") or (self.gameTiles[62] != "") or (ut.xeque(cor_do_jogador)):
                 return False
+        if cor_do_jogador == 'BLACK':
+            if (self.contagem_movimento_rei_pretas > 0) or (self.contagem_movimento_torre_rm_pretas > 0) or (ut.peca_ameacada(62,cor_do_jogador)) or (ut.peca_ameacada(63,cor_do_jogador)) or (self.gameTiles[63] != "") or (self.gameTiles[62] != "") or (ut.xeque(cor_do_jogador)):
+                return True
             else:
                 self.movimentar_peca(cor_do_jogador,"Rg8")
                 self.movimentar_peca(cor_do_jogador,"Tf8")
-                return True
+                return False
 
 

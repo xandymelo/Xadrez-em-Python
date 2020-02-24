@@ -55,18 +55,14 @@ class util(Piece):
         else:
             return True
 
-    def peca_ameacada(self,local_atual):
+    def peca_ameacada(self,local_atual,cor_do_jogador):
         cor_do_jogador_adversario = ""
-        if self.gameTiles[local_atual].pieceOnTile.toString().isupper():
-            cor_do_jogador_adversario = "Brancas"
-        elif self.gameTiles[local_atual].pieceOnTile.toString().islower():
-            cor_do_jogador_adversario = "Pretas"
+        cor_do_jogador = cor_do_jogador.upper()
+        if cor_do_jogador == "BLACK":
+            cor_do_jogador_adversario = "WHITE"
+        elif cor_do_jogador == "WHITE":
+            cor_do_jogador_adversario = "BLACK"
         if local_atual in self.todos_os_movimentos_possiveis(cor_do_jogador_adversario):
-            return True
-        else:
-            return False
-        mov_possiveis = self.todos_os_movimentos_possiveis("Brancas") + self.todos_os_movimentos_possiveis("Pretas")
-        if self.gameTiles[local_atual].pieceOnTile.toString() == '-' and (local_atual in mov_possiveis):
             return True
         else:
             return False
