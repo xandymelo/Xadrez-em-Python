@@ -104,6 +104,6 @@ while True:
     chessBoard.printBoard()
 
 
-#ajeitar a parte das pretas do roque maior
+#testar xeque e se precisar, ajeitar
 #dividir a função movimentar_peça criando subfunções em utilmovea
 
