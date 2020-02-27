@@ -27,6 +27,8 @@ class Move(Piece):
     #AJEITAR ESSA FUNÇÃO E COLOCAR OUTRAS#
     def movimentar_peca(self,cor_do_jogador,input): #mudar o formato do input para o formatov'd2d4'#
         ut = util()
+        cor_do_jogador = cor_do_jogador.upper()
+        cor_do_jogador_adversario = ''
         if input == 'castle': 
             x = self.roque_menor(cor_do_jogador)
             if x:
@@ -41,6 +43,10 @@ class Move(Piece):
             else:
                 print("Roque feito com sucesso")
             return x
+        if cor_do_jogador == "WHITE":
+            cor_do_jogador_adversario = "BLACK"
+        elif cor_do_jogador == "BLACK":
+            cor_do_jogador_adversario = 'WHITE'
 
         local_atual = input[0] + input[1]
         novo_local = input[2] + input[3]
@@ -83,6 +89,8 @@ class Move(Piece):
         self.gameTiles[novo_local_convertido].pieceOnTile.position = novo_local_convertido
         self.gameTiles[local_atual_convertido] = Tile(local_atual_convertido,NullPiece())
         print("Jogada feita com sucesso")
+        if ut.xeque(cor_do_jogador_adversario):
+            print('xeque!')
         return False
         #else:
             #print("Escolha uma jogada com a cor correta (" + cor_do_jogador + ")")

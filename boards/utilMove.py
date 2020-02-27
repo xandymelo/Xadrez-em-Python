@@ -33,16 +33,21 @@ class util(Piece):
     
     def xeque(self,cor_do_jogador):#Aqui irei verificar se a casa do rei está na lista de movimentos possiveis (lembrando que a função de todos os movimentos possiveis não inclui os movimentos do rei  #
         cor_do_jogador = cor_do_jogador.upper()
-        if cor_do_jogador == "PRETAS" or cor_do_jogador == "NEGRAS":
-            casa_do_rei = self.gameTiles.index("K")
-            movimentos_possiveis = self.todos_os_movimentos_possiveis("Brancas")
+        casa_do_rei = ""
+        if cor_do_jogador == "BLACK":
+            for c in self.gameTiles:
+                if c.pieceOnTile.toString() == "K":
+                    casa_do_rei = c.pieceOnTile.position
+            movimentos_possiveis = self.todos_os_movimentos_possiveis("WHITE")
             if casa_do_rei in movimentos_possiveis:
                 return True
             else:
                 return False
-        if cor_do_jogador == "BRANCAS":
-            casa_do_rei = self.gameTiles.index("k")
-            movimentos_possiveis = self.todos_os_movimentos_possiveis("Pretas")
+        if cor_do_jogador == "WHITE":
+            for c in self.gameTiles:
+                if c.pieceOnTile.toString() == "k":
+                    casa_do_rei = c.pieceOnTile.position
+            movimentos_possiveis = self.todos_os_movimentos_possiveis("BLACK")
             if casa_do_rei in movimentos_possiveis:
                 return True
             else:
