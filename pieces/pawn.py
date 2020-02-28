@@ -29,7 +29,7 @@ class Pawn(Piece):
                 if self.position + 9 <= 64:
                     mov_possiveis.append(self.position + 9)
         if cor_do_jogador == "WHITE":
-            if self.position not in self.ultima_linha:
+            if self.position not in self.primeira_linha:
                 mov_possiveis.append(self.position - 8)
             if self.position in self.penultima_linha:
                 mov_possiveis.append(self.position - 16)

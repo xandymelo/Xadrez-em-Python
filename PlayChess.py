@@ -103,7 +103,7 @@ while True:
         moviment = move.movimentar_peca(cor2,jogada2)
     chessBoard.printBoard()
 
-#debbugar pra ver porque não posso fazer o movimento h2h3
+#testar a função xeque mate e ajeitar
 #fazer com que, quando em xeque, só é  possível fazer movimentos que tiram o xeque, e tirar movimentos que dão xeque em si mesmo
 #dividir a função movimentar_peça criando subfunções em utilmovea
 
