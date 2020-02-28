@@ -5,6 +5,7 @@ from boards.tile import Tile
 from pieces.piece import Piece
 from pieces.king import King
 from pieces.rook import Rook
+import copy
 
 
 
@@ -60,6 +61,15 @@ class Move(Piece):
         if cor_do_jogador == "PRETAS":
             cor_do_jogador = 'Pretas'
             cor_do_adversario = "Brancas"
+        if ut.xeque(cor_do_jogador):
+            x = copy.deepcopy(self.gameTiles[novo_local_convertido])
+            self.gameTiles[novo_local_convertido] = self.gameTiles[local_atual_convertido]
+            if ut.xeque(cor_do_jogador):
+                self.gameTiles[novo_local_convertido] = x
+                print("Movimento inválido, você está em xeque!")
+                return True
+            else:
+                self.gameTiles[novo_local_convertido] = x
 
         #criar a parte que verifica se a jogada é válida#
         verificacao = ut.verificar_se_mov_eh_valido(local_atual_convertido,novo_local_convertido)

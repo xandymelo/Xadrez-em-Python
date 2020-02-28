@@ -103,7 +103,7 @@ while True:
         moviment = move.movimentar_peca(cor2,jogada2)
     chessBoard.printBoard()
 
-
-#fazer com que, quando em xeque, só é  possível fazer movimentos que tiram o xeque
+#debuggar para ver o problema do que eu fiz em move
+#fazer com que, quando em xeque, só é  possível fazer movimentos que tiram o xeque, e tirar movimentos que dão xeque em si mesmo
 #dividir a função movimentar_peça criando subfunções em utilmovea
 
