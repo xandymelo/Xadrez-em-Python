@@ -44,6 +44,8 @@ class Move(Piece):
             else:
                 print("Roque feito com sucesso")
             return x
+        cor_do_jogador = cor_do_jogador.upper()
+        cor_do_jogador_adversario = ""
         if cor_do_jogador == "WHITE":
             cor_do_jogador_adversario = "BLACK"
         elif cor_do_jogador == "BLACK":
@@ -53,24 +55,6 @@ class Move(Piece):
         novo_local = input[2] + input[3]
         local_atual_convertido = ut.converter_inputs(local_atual)
         novo_local_convertido = ut.converter_inputs(novo_local)
-        cor_do_jogador = cor_do_jogador.upper()
-        cor_do_adversario = ""
-        if cor_do_jogador == "BRANCAS":
-            cor_do_jogador = "Brancas"
-            cor_do_adversario = "Pretas"
-        if cor_do_jogador == "PRETAS":
-            cor_do_jogador = 'Pretas'
-            cor_do_adversario = "Brancas"
-        if ut.xeque(cor_do_jogador):
-            x = copy.deepcopy(self.gameTiles[novo_local_convertido])
-            self.gameTiles[novo_local_convertido] = self.gameTiles[local_atual_convertido]
-            if ut.xeque(cor_do_jogador):
-                self.gameTiles[novo_local_convertido] = x
-                print("Movimento inválido, você está em xeque!")
-                return True
-            else:
-                self.gameTiles[novo_local_convertido] = x
-
         #criar a parte que verifica se a jogada é válida#
         verificacao = ut.verificar_se_mov_eh_valido(local_atual_convertido,novo_local_convertido)
         if not verificacao:
@@ -95,9 +79,16 @@ class Move(Piece):
                 self.contagem_movimento_torre_rma_brancas += 1
         #if cor_do_jogador in nome_da_peca:
         #if (self.gameTiles[novo_local_convertido] is NullPiece):
+        x = copy.deepcopy(self.gameTiles[novo_local_convertido])
         self.gameTiles[novo_local_convertido] = self.gameTiles[local_atual_convertido]
-        self.gameTiles[novo_local_convertido].pieceOnTile.position = novo_local_convertido
         self.gameTiles[local_atual_convertido] = Tile(local_atual_convertido,NullPiece())
+        if ut.xeque(cor_do_jogador):
+            self.gameTiles[local_atual_convertido] = self.gameTiles[novo_local_convertido]
+            self.gameTiles[novo_local_convertido] = x
+            print("Com esta jogada, você continua/fica em xeque")
+            return True
+
+        self.gameTiles[novo_local_convertido].pieceOnTile.position = novo_local_convertido
         print("Jogada feita com sucesso")
         if ut.xeque(cor_do_jogador_adversario):
             print('xeque!')
