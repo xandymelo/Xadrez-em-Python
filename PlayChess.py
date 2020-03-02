@@ -4,6 +4,7 @@ from boards.ChessBoard import Board
 from pieces.piece import Piece
 from boards.move import Move
 from pieces.pawn import Pawn
+from boards.utilMove import util
 
 
 
@@ -90,8 +91,8 @@ move = Move()
 chessBoard.printBoard()
 #p.todos_os_movimentos_possiveis("Black")
 #chessBoard.gameTiles[5].pieceOnTile.possible_mov()  #debuggar isso (O REI ESTÁ COMENDO PEÇAS DA PROPRIA COR)
-
-while True:
+x = True
+while x:
     moviment = True
     while moviment:
         jogada1 = input("Jogador1: ")
@@ -103,7 +104,6 @@ while True:
         moviment = move.movimentar_peca(cor2,jogada2)
     chessBoard.printBoard()
 
-#testar a função xeque mate e ajeitar
-#fazer com que, quando em xeque, só é  possível fazer movimentos que tiram o xeque, e tirar movimentos que dão xeque em si mesmo
-#dividir a função movimentar_peça criando subfunções em utilmovea
+#ver o porquê que o rei pode comer a dama no xeque mate do pastor
+#dividir a função movimentar_peça criando subfunções em utilmove
 

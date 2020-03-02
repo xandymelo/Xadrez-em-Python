@@ -35,18 +35,14 @@ class util(Piece):
         cor_do_jogador = cor_do_jogador.upper()
         casa_do_rei = ""
         if cor_do_jogador == "BLACK":
-            for c in self.gameTiles:
-                if c.pieceOnTile.toString() == "K":
-                    casa_do_rei = c.pieceOnTile.position
+            casa_do_rei = self.conseguir_casa_do_rei(cor_do_jogador)
             movimentos_possiveis = self.todos_os_movimentos_possiveis("WHITE")
             if casa_do_rei in movimentos_possiveis:
                 return True
             else:
                 return False
         if cor_do_jogador == "WHITE":
-            for c in self.gameTiles:
-                if c.pieceOnTile.toString() == "k":
-                    casa_do_rei = c.pieceOnTile.position
+            casa_do_rei = self.conseguir_casa_do_rei(cor_do_jogador)
             movimentos_possiveis = self.todos_os_movimentos_possiveis("BLACK")
             if casa_do_rei in movimentos_possiveis:
                 return True
@@ -84,4 +80,25 @@ class util(Piece):
                 return False   
         else:
             return False
-    
+    def xeque_mate(self,cor_do_jogador):
+        cor_do_jogador = cor_do_jogador.upper()
+        if self.xeque(cor_do_jogador):
+            casa_do_rei = self.conseguir_casa_do_rei(cor_do_jogador)
+            if self.gameTiles[casa_do_rei].pieceOnTile.possible_mov() == []:
+                return True
+            else:
+                return False
+        else:
+            return False
+                
+    def conseguir_casa_do_rei(self,cor_do_jogador):
+        cor_do_jogador = cor_do_jogador.upper()
+        if cor_do_jogador == "BLACK":
+            for c in self.gameTiles:
+                if c.pieceOnTile.toString() == "K":
+                    casa_do_rei = c.pieceOnTile.position
+        if cor_do_jogador == "WHITE":
+            for c in self.gameTiles:
+                if c.pieceOnTile.toString() == "k":
+                    casa_do_rei = c.pieceOnTile.position
+        return casa_do_rei

@@ -30,6 +30,9 @@ class Move(Piece):
         ut = util()
         cor_do_jogador = cor_do_jogador.upper()
         cor_do_jogador_adversario = ''
+        if ut.xeque_mate(cor_do_jogador):
+            print("Você levou xeque mate, você perdeu")
+            return True
         if input == 'castle': 
             x = self.roque_menor(cor_do_jogador)
             if x:
