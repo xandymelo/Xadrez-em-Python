@@ -108,5 +108,8 @@ while x:
 #ver o porquê que o rei pode comer a dama no xeque mate do pastor
 #porque como a dama está na casa 54, esta casa não é adicionada aos movimentos possiveis
 #do bispo, logo teoricamente o rei pode ir lá, (como resolver) ???
+#criar uma nova função para cada peça, q vai ser a função dos movimentos que não tiram os movimentos em cima de uma casa de uma peça do mesmo time, e usar ela para criar os movimentos possiveis tirando essas casas.
+
+
 #dividir a função movimentar_peça criando subfunções em utilmove
 
