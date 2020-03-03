@@ -88,9 +88,10 @@ cor1 = "white"
 cor2 = 'Black'
 
 move = Move()
+
 chessBoard.printBoard()
-#p.todos_os_movimentos_possiveis("Black")
-#chessBoard.gameTiles[5].pieceOnTile.possible_mov()  #debuggar isso (O REI ESTÁ COMENDO PEÇAS DA PROPRIA COR)
+p.todos_os_movimentos_possiveis("Black")
+chessBoard.gameTiles[61].pieceOnTile.possible_mov()  #debuggar isso (O REI ESTÁ COMENDO PEÇAS DA PROPRIA COR)
 x = True
 while x:
     moviment = True
@@ -105,5 +106,7 @@ while x:
     chessBoard.printBoard()
 
 #ver o porquê que o rei pode comer a dama no xeque mate do pastor
+#porque como a dama está na casa 54, esta casa não é adicionada aos movimentos possiveis
+#do bispo, logo teoricamente o rei pode ir lá, (como resolver) ???
 #dividir a função movimentar_peça criando subfunções em utilmove
 
