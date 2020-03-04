@@ -68,8 +68,8 @@ class util(Piece):
         else:
             return False
 
-    def peca_cravada(self):
-        if self.peca_ameacada(self.position):
+    def peca_cravada(self,cor_do_jogador):
+        if self.peca_ameacada(self.position,cor_do_jogador):
             x = copy.deepcopy(self.gameTiles[self.position])
             self.gameTiles[self.position] = Tile(self.position, NullPiece())  #usar deepcopy
             if self.xeque(self.alliance):

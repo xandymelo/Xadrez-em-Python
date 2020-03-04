@@ -11,7 +11,6 @@ class Bishop(Piece):
         return "B" if self.alliance == "Black" else "b"
     
     def possible_mov(self):#COMO FAZER NÃO REBATER A DIAGONAL NO MOVIMENTO? RESTO DA DIVISÃO DA POSIÇÃO POR 8, SUBTRAI O RESTO POR 8, É O NUMERO DE POSIÇÕES NAQUELA DIREÇÃO DA DIAGONAL#
-        cor_do_jogador = self.alliance
         #Isto é para achar as casa da Diagonal Superior Direita(DSD) das casas do bispo +9#
         mov_possiveisDSD = [x for x in range (self.position, 65, 9)]
         mov_possiveisDSD.remove (self.position)
@@ -39,9 +38,4 @@ class Bishop(Piece):
         mov_possiveisDID.remove (self.position)
         mov_possiveisDID = self.remover_movimentos_invalidos_diagonal_inferior(mov_possiveisDID)
         mov_possiveis = mov_possiveisDSD + mov_possiveisDID + mov_possiveisDSE + mov_possiveisDIE
-        #for c in mov_possiveis:
-            #if self.gameTiles[c].pieceOnTile.toString() != "-":
-                #print(self.gameTiles[c], self.gameTiles.index(self.gameTiles[c] + 1) )
-            #else:
-                #print(self.gameTiles.index(self.gameTiles[c] + 1))
         return mov_possiveis

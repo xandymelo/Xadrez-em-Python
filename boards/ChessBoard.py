@@ -46,7 +46,8 @@ class Board(Piece):
         self.gameTiles[14] = Tile(14, Pawn(14, "Black"))
         self.gameTiles[15] = Tile(15, Pawn(15, "Black"))
         self.gameTiles[16] = Tile(16, Pawn(16, "Black"))
-        self.gameTiles[27] = Tile(27, Bishop(27, "Black"))
+        
+        #self.gameTiles[27] = Tile(27, Bishop(27, "Black"))
 
         #self.gameTiles[28] = Tile(28,King(28, "White"))
 
@@ -55,8 +56,8 @@ class Board(Piece):
         self.gameTiles[51] = Tile(51, Pawn(51, "White"))
         self.gameTiles[52] = Tile(52, Pawn(52, "White"))
         self.gameTiles[53] = Tile(53, Pawn(53, "White"))
-        #self.gameTiles[54] = Tile(54, Pawn(54, "White"))
-        self.gameTiles[54] = Tile(54, Queen(54, "Black"))
+        self.gameTiles[54] = Tile(54, Pawn(54, "White"))
+        #self.gameTiles[54] = Tile(54, Queen(54, "Black"))
         self.gameTiles[55] = Tile(55, Pawn(55, "White"))
         self.gameTiles[56] = Tile(56, Pawn(56, "White"))
         self.gameTiles[57] = Tile(57, Rook(57, "White"))
