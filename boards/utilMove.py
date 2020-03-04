@@ -86,8 +86,13 @@ class util(Piece):
             casa_do_rei = self.conseguir_casa_do_rei(cor_do_jogador)
             if self.gameTiles[casa_do_rei].pieceOnTile.possible_mov() == []:
                 return True
-            else:
-                return False
+            soma = 0 
+            for c in self.gameTiles[casa_do_rei].pieceOnTile.possible_mov():
+                x = self.testar_se_o_mov_eh_possivel(cor_do_jogador,casa_do_rei,c)
+                if x:
+                    soma += 1
+            if soma == len(self.gameTiles[casa_do_rei].pieceOnTile.possible_mov()):
+                return True
         else:
             return False
                 
@@ -102,3 +107,21 @@ class util(Piece):
                 if c.pieceOnTile.toString() == "k":
                     casa_do_rei = c.pieceOnTile.position
         return casa_do_rei
+    def testar_se_o_mov_eh_possivel(self,cor_do_jogador,local_atual_convertido,novo_local_convertido):
+        ut = util()
+        x = copy.deepcopy(self.gameTiles[novo_local_convertido])
+        self.gameTiles[novo_local_convertido] = self.gameTiles[local_atual_convertido]
+        self.gameTiles[novo_local_convertido].tileCoordinate = novo_local_convertido
+        self.gameTiles[novo_local_convertido].pieceOnTile.position = novo_local_convertido
+        self.gameTiles[local_atual_convertido] = Tile(local_atual_convertido,NullPiece())
+        if ut.xeque(cor_do_jogador):
+            self.gameTiles[local_atual_convertido] = self.gameTiles[novo_local_convertido]
+            self.gameTiles[local_atual_convertido].tileCoordinate = local_atual_convertido
+            self.gameTiles[local_atual_convertido].pieceOnTile.position = local_atual_convertido
+            self.gameTiles[novo_local_convertido] = x
+            return True
+        self.gameTiles[local_atual_convertido] = self.gameTiles[novo_local_convertido]
+        self.gameTiles[local_atual_convertido].tileCoordinate = local_atual_convertido
+        self.gameTiles[local_atual_convertido].pieceOnTile.position = local_atual_convertido
+        self.gameTiles[novo_local_convertido] = x
+        return False

@@ -30,9 +30,6 @@ class Move(Piece):
         ut = util()
         cor_do_jogador = cor_do_jogador.upper()
         cor_do_jogador_adversario = ''
-        if ut.xeque_mate(cor_do_jogador):
-            print("Você levou xeque mate, você perdeu")
-            return True
         if input == 'castle': 
             x = self.roque_menor(cor_do_jogador)
             if x:
@@ -82,20 +79,13 @@ class Move(Piece):
                 self.contagem_movimento_torre_rma_brancas += 1
         #if cor_do_jogador in nome_da_peca:
         #if (self.gameTiles[novo_local_convertido] is NullPiece):
-        x = copy.deepcopy(self.gameTiles[novo_local_convertido])
+        x = ut.testar_se_o_mov_eh_possivel(cor_do_jogador,local_atual_convertido,novo_local_convertido)
+        if x:
+            return True
         self.gameTiles[novo_local_convertido] = self.gameTiles[local_atual_convertido]
         self.gameTiles[novo_local_convertido].tileCoordinate = novo_local_convertido
         self.gameTiles[novo_local_convertido].pieceOnTile.position = novo_local_convertido
         self.gameTiles[local_atual_convertido] = Tile(local_atual_convertido,NullPiece())
-        if ut.xeque(cor_do_jogador):
-            self.gameTiles[local_atual_convertido] = self.gameTiles[novo_local_convertido]
-            self.gameTiles[local_atual_convertido].tileCoordinate = local_atual_convertido
-            self.gameTiles[local_atual_convertido].pieceOnTile.position = local_atual_convertido
-            self.gameTiles[novo_local_convertido] = x
-            print("Com esta jogada, você continua/fica em xeque")
-            return True
-
-        self.gameTiles[novo_local_convertido].pieceOnTile.position = novo_local_convertido
         print("Jogada feita com sucesso")
         if ut.xeque(cor_do_jogador_adversario):
             print('xeque!')
