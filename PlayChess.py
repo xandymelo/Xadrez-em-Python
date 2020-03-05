@@ -48,6 +48,9 @@ x.main()
 
 #dividir a função movimentar_peça criando subfunções em utilmove
 #pensar em fazer o movimento En Passant
+# afogamento
+#40 lances sem tomar peça = empate
+#rei x rei e cavalo ou rei x rei e bispo = empate
 
 
 
