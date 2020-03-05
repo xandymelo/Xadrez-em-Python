@@ -6,6 +6,8 @@ Projeto com o intuito de estudo, um jogo de xadrez que ainda está em processo, 
 ## Movimentação
 
 O tabuleiro é impresso como na figura abaixo:
- <img src=”readme/tabuleiro.jpg”>
+ 
+ 
+ <img src=readme/tabuleiro.jpg>
 
  
