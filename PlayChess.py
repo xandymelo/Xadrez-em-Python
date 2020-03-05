@@ -45,11 +45,9 @@ class Main():
 x = Main()
 x.main()
 
-#ajeitar a função do bispo (repetição de código)
-#criar uma nova função para cada peça, q vai ser a função dos movimentos que não tiram os movimentos em cima de uma casa de uma peça do mesmo time, e usar ela para criar os movimentos possiveis tirando essas casas.
-
 
 #dividir a função movimentar_peça criando subfunções em utilmove
+#pensar em fazer o movimento En Passant
 
 
 

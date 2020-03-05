@@ -57,7 +57,6 @@ class Board(Piece):
         self.gameTiles[52] = Tile(52, Pawn(52, "White"))
         self.gameTiles[53] = Tile(53, Pawn(53, "White"))
         self.gameTiles[54] = Tile(54, Pawn(54, "White"))
-        #self.gameTiles[54] = Tile(54, Queen(54, "Black"))
         self.gameTiles[55] = Tile(55, Pawn(55, "White"))
         self.gameTiles[56] = Tile(56, Pawn(56, "White"))
         self.gameTiles[57] = Tile(57, Rook(57, "White"))

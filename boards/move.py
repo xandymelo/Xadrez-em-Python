@@ -50,6 +50,10 @@ class Move(Piece):
             cor_do_jogador_adversario = "BLACK"
         elif cor_do_jogador == "BLACK":
             cor_do_jogador_adversario = 'WHITE'
+        if not (input[0].isalpha() and input[1].isdigit() and input[2].isalpha() and input[3].isdigit()):
+            print("Movimento Inválido")
+            return True
+        
 
         local_atual = input[0] + input[1]
         novo_local = input[2] + input[3]
