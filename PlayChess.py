@@ -33,6 +33,10 @@ class Main():
                 print("Xeque mate!! Brancas vencem")
                 x = False
                 moviment = False
+            if ut.afogamento(cor2):
+                print("Empate, rei afogado")
+                x = False
+                moviment = False
             while moviment:
                 jogada2 = input("Jogador2: ")
                 moviment = move.movimentar_peca(cor2,jogada2)
@@ -41,11 +45,17 @@ class Main():
                 print("Xeque mate!! Pretas vencem")
                 x = False
                 moviment = False
+            if ut.afogamento(cor1):
+                print("Empate, rei afogado")
+                x = False
+                moviment = False
 
 x = Main()
 x.main()
 
 
+
+#TESTAR SE O AFOGAMENTO ESTÁ FUNCIONANDO
 #dividir a função movimentar_peça criando subfunções em utilmove
 #pensar em fazer o movimento En Passant
 # afogamento

@@ -83,18 +83,8 @@ class util(Piece):
     def xeque_mate(self,cor_do_jogador):
         cor_do_jogador = cor_do_jogador.upper()
         if self.xeque(cor_do_jogador):
-            casa_do_rei = self.conseguir_casa_do_rei(cor_do_jogador)
-            if self.gameTiles[casa_do_rei].pieceOnTile.possible_mov() == []:
-                return True
-            soma = 0 
-            for c in self.gameTiles[casa_do_rei].pieceOnTile.possible_mov():
-                x = self.testar_se_o_mov_eh_possivel(cor_do_jogador,casa_do_rei,c)
-                if x:
-                    soma += 1
-            if soma == len(self.gameTiles[casa_do_rei].pieceOnTile.possible_mov()):
-                return True
-        else:
-            return False
+            return self.testar_se_o_rei_tem_movimentos(cor_do_jogador)
+        return False
                 
     def conseguir_casa_do_rei(self,cor_do_jogador):
         cor_do_jogador = cor_do_jogador.upper()
@@ -124,4 +114,25 @@ class util(Piece):
         self.gameTiles[local_atual_convertido].tileCoordinate = local_atual_convertido
         self.gameTiles[local_atual_convertido].pieceOnTile.position = local_atual_convertido
         self.gameTiles[novo_local_convertido] = x
+        return False
+    
+    
+    def afogamento(self,cor_do_jogador):
+        cor_do_jogador = cor_do_jogador.upper()
+        if not self.xeque(cor_do_jogador):
+            return self.testar_se_o_rei_tem_movimentos(cor_do_jogador)
+        return False
+    
+
+    def testar_se_o_rei_tem_movimentos(self,cor_do_jogador):
+        casa_do_rei = self.conseguir_casa_do_rei(cor_do_jogador)
+        if self.gameTiles[casa_do_rei].pieceOnTile.possible_mov() == []:
+            return True
+        soma = 0 
+        for c in self.gameTiles[casa_do_rei].pieceOnTile.possible_mov():
+            x = self.testar_se_o_mov_eh_possivel(cor_do_jogador,casa_do_rei,c)
+            if x:
+                soma += 1
+        if soma == len(self.gameTiles[casa_do_rei].pieceOnTile.possible_mov()):
+            return True
         return False
