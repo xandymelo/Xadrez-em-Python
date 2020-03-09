@@ -45,12 +45,19 @@ class King(Piece):
                 mov_possiveis.remove(self.position - 7)
 
         remover = []
-        for c in mov_possiveis:
-            if ut.peca_ameacada(c,cor_do_jogador):
-                remover.append(c)
+        if cor_do_jogador == "WHITE":
+            for c in range(len(mov_possiveis)):
+                if ut.peca_ameacada(mov_possiveis[c],cor_do_jogador) or self.gameTiles[mov_possiveis[c]].pieceOnTile.toString().islower():
+                    remover.append(c)
+        if cor_do_jogador == "BLACK":
+            for c in range(len(mov_possiveis)):
+                if ut.peca_ameacada(mov_possiveis[c],cor_do_jogador) or self.gameTiles[mov_possiveis[c]].pieceOnTile.toString().isupper():
+                    remover.append(c)
+        a = 0
         for c in remover:
-            mov_possiveis.remove(c)
-        
+            #mov_possiveis.remove(c)
+            del mov_possiveis[c - a]
+            a += 1
         
         #if (cor_do_jogador == "BLACK"):
             #for c in mov_possiveis:

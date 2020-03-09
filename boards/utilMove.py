@@ -117,7 +117,17 @@ class util(Piece):
         cor_do_jogador = cor_do_jogador.upper()
         if not self.xeque(cor_do_jogador):
             cor_do_jogador_adversario = self.achar_a_cor_do_adversario(cor_do_jogador)
-            if self.todos_os_movimentos_possiveis(cor_do_jogador_adversario):
+            casa_do_rei = self.conseguir_casa_do_rei(cor_do_jogador)
+            x = self.todos_os_movimentos_possiveis(cor_do_jogador)
+            x.remove(casa_do_rei + 8)
+            x.remove(casa_do_rei - 8)
+            x.remove(casa_do_rei + 7)
+            x.remove(casa_do_rei - 7)
+            x.remove(casa_do_rei + 1)
+            x.remove(casa_do_rei - 1)
+            x.remove(casa_do_rei + 9)
+            x.remove(casa_do_rei - 9)
+            if x == []:
                 return self.testar_se_o_rei_tem_movimentos(cor_do_jogador)
         return False
     

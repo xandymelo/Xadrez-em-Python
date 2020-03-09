@@ -19,7 +19,7 @@ class Main():
         cor2 = 'Black'
         move = Move()
         chessBoard.printBoard()
-        #chessBoard.gameTiles[61].pieceOnTile.possible_mov() 
+        chessBoard.gameTiles[5].pieceOnTile.possible_mov() 
         x = True
         while x:
             moviment = True
@@ -33,6 +33,7 @@ class Main():
                 print("Xeque mate!! Brancas vencem")
                 x = False
                 moviment = False
+                break
             if ut.afogamento(cor2):
                 print("Empate, rei afogado")
                 x = False
@@ -45,6 +46,7 @@ class Main():
                 print("Xeque mate!! Pretas vencem")
                 x = False
                 moviment = False
+                break
             if ut.afogamento(cor1):
                 print("Empate, rei afogado")
                 x = False
@@ -54,7 +56,7 @@ x = Main()
 x.main()
 
 
-#VER PQ O XEQUE DO PASTOR NÃO ESTÁ FUNCIONANDO
+#ajeitar a função do afogamento
 #dividir a função movimentar_peça criando subfunções em utilmove
 #pensar em fazer o movimento En Passant
 # afogamento
