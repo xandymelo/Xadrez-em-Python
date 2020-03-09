@@ -54,8 +54,7 @@ x = Main()
 x.main()
 
 
-
-#TESTAR SE O AFOGAMENTO ESTÁ FUNCIONANDO
+#VER PQ O XEQUE DO PASTOR NÃO ESTÁ FUNCIONANDO
 #dividir a função movimentar_peça criando subfunções em utilmove
 #pensar em fazer o movimento En Passant
 # afogamento

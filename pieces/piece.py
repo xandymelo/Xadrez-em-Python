@@ -77,7 +77,14 @@ class Piece():
                             mov_possiveis.append(c.pieceOnTile.position + 7)
                             mov_possiveis.append(c.pieceOnTile.position + 9)
                     elif c.pieceOnTile.toString() == "K":
-                        pass
+                        mov_possiveis.append(c.pieceOnTile.position + 8)
+                        mov_possiveis.append(c.pieceOnTile.position - 8)
+                        mov_possiveis.append(c.pieceOnTile.position + 7)
+                        mov_possiveis.append(c.pieceOnTile.position - 7)
+                        mov_possiveis.append(c.pieceOnTile.position + 1)
+                        mov_possiveis.append(c.pieceOnTile.position - 1)
+                        mov_possiveis.append(c.pieceOnTile.position + 9)
+                        mov_possiveis.append(c.pieceOnTile.position - 9)
                     
                     else:
                         for d in c.pieceOnTile.possible_mov():
@@ -95,7 +102,14 @@ class Piece():
                             mov_possiveis.append(c.pieceOnTile.position - 9)
                     
                     elif c.pieceOnTile.toString() == "k":
-                        pass
+                        mov_possiveis.append(c.pieceOnTile.position + 8)
+                        mov_possiveis.append(c.pieceOnTile.position - 8)
+                        mov_possiveis.append(c.pieceOnTile.position + 7)
+                        mov_possiveis.append(c.pieceOnTile.position - 7)
+                        mov_possiveis.append(c.pieceOnTile.position + 1)
+                        mov_possiveis.append(c.pieceOnTile.position - 1)
+                        mov_possiveis.append(c.pieceOnTile.position + 9)
+                        mov_possiveis.append(c.pieceOnTile.position - 9)
 
                     else:
                         for d in c.pieceOnTile.possible_mov():
@@ -103,6 +117,12 @@ class Piece():
             
         mov_possiveis = set(mov_possiveis)
         mov_possiveis = list(mov_possiveis)
+        remover = []
+        for c in mov_possiveis:
+            if c > 64 or c < 1:
+                remover.append(c)
+        for c in remover:
+            mov_possiveis.remove(c)
         #mov_possiveis = torre(self.gameTiles.index("Torre2Brancas"),cor_do_jogador).mov_possiveis(self.gameTiles) + torre(self.gameTiles.index("TorreBrancas"),cor_do_jogador).mov_possiveis(self.gameTiles) + bispo.bispo(self.gameTiles.index("BispoPBrancas"),cor_do_jogador).mov_possiveis(self.gameTiles) + bispo.bispo(self.gameTiles.index("BispoBBrancas"),cor_do_jogador).mov_possiveis(self.gameTiles) + cavalo(self.gameTiles.index("CavaloBrancas"),cor_do_jogador).mov_possiveis(self.gameTiles) + cavalo(self.gameTiles.index("Cavalo2Brancas"),cor_do_jogador).mov_possiveis(self.gameTiles) + dama(self.gameTiles.index("DamaBrancas"),cor_do_jogador).mov_possiveis(self.gameTiles) + peao(self.gameTiles.index("peãoBrancas1"),cor_do_jogador).mov_possiveis(self.gameTiles) + peao(self.gameTiles.index("peãoBrancas2"),cor_do_jogador).mov_possiveis(self.gameTiles) + peao(self.gameTiles.index("peãoBrancas3"),cor_do_jogador).mov_possiveis(self.gameTiles) + peao(self.gameTiles.index("peãoBrancas4"),cor_do_jogador).mov_possiveis(self.gameTiles) + peao(self.gameTiles.index("peãoBrancas5"),cor_do_jogador).mov_possiveis(self.gameTiles) + peao(self.gameTiles.index("peãoBrancas6"),cor_do_jogador).mov_possiveis(self.gameTiles) + peao(self.gameTiles.index("peãoBrancas7"),cor_do_jogador).mov_possiveis(self.gameTiles) + peao(self.gameTiles.index("peãoBrancas8"),cor_do_jogador).mov_possiveis(self.gameTiles)
         return mov_possiveis
     

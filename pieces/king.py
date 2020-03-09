@@ -1,7 +1,6 @@
-import sys
 from pieces.piece import Piece
+from boards.utilMove import util
 
-sys.setrecursionlimit(1000)
 class King(Piece):
 
     
@@ -13,6 +12,7 @@ class King(Piece):
         return "K" if self.alliance == "Black" else "k"
     
     def possible_mov(self):
+        ut = util()
         cor_do_jogador = self.alliance.upper()
         mov_possiveis = []
         mov_possiveis.append(self.position + 8)
@@ -45,15 +45,22 @@ class King(Piece):
                 mov_possiveis.remove(self.position - 7)
 
         remover = []
-        if (cor_do_jogador == "BLACK"):
-            for c in mov_possiveis:
-                if (c in self.todos_os_movimentos_possiveis("White")) or (self.gameTiles[c].pieceOnTile.toString().isupper()):
-                    remover.append(c)
-        elif cor_do_jogador == "WHITE":
-            for c in mov_possiveis:
-                if (c in self.todos_os_movimentos_possiveis("Black")) or (self.gameTiles[c].pieceOnTile.toString().islower()):
-                    remover.append(c)
+        for c in mov_possiveis:
+            if ut.peca_ameacada(c,cor_do_jogador):
+                remover.append(c)
         for c in remover:
             mov_possiveis.remove(c)
+        
+        
+        #if (cor_do_jogador == "BLACK"):
+            #for c in mov_possiveis:
+                #if (c in self.todos_os_movimentos_possiveis("White")) or (self.gameTiles[c].pieceOnTile.toString().isupper()):
+                    #remover.append(c)
+        #elif cor_do_jogador == "WHITE":
+            #for c in mov_possiveis:
+                #if (c in self.todos_os_movimentos_possiveis("Black")) or (self.gameTiles[c].pieceOnTile.toString().islower()):
+                    #remover.append(c)
+        #for c in remover:
+            #mov_possiveis.remove(c)
         return mov_possiveis
         

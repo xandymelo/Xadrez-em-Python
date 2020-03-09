@@ -57,12 +57,8 @@ class util(Piece):
             return True
 
     def peca_ameacada(self,local_atual,cor_do_jogador):
-        cor_do_jogador_adversario = ""
+        cor_do_jogador_adversario = self.achar_a_cor_do_adversario(cor_do_jogador)
         cor_do_jogador = cor_do_jogador.upper()
-        if cor_do_jogador == "BLACK":
-            cor_do_jogador_adversario = "WHITE"
-        elif cor_do_jogador == "WHITE":
-            cor_do_jogador_adversario = "BLACK"
         if local_atual in self.todos_os_movimentos_possiveis(cor_do_jogador_adversario):
             return True
         else:
@@ -120,7 +116,9 @@ class util(Piece):
     def afogamento(self,cor_do_jogador):
         cor_do_jogador = cor_do_jogador.upper()
         if not self.xeque(cor_do_jogador):
-            return self.testar_se_o_rei_tem_movimentos(cor_do_jogador)
+            cor_do_jogador_adversario = self.achar_a_cor_do_adversario(cor_do_jogador)
+            if self.todos_os_movimentos_possiveis(cor_do_jogador_adversario):
+                return self.testar_se_o_rei_tem_movimentos(cor_do_jogador)
         return False
     
 
@@ -136,3 +134,12 @@ class util(Piece):
         if soma == len(self.gameTiles[casa_do_rei].pieceOnTile.possible_mov()):
             return True
         return False
+
+    def achar_a_cor_do_adversario(self,cor_do_jogador):
+        cor_do_jogador = cor_do_jogador.upper()
+        cor_do_jogador_adversario = ""
+        if cor_do_jogador == "WHITE":
+            cor_do_jogador_adversario = "BLACK"
+        elif cor_do_jogador == "BLACK":
+            cor_do_jogador_adversario = 'WHITE'
+        return cor_do_jogador_adversario

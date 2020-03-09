@@ -44,12 +44,7 @@ class Move(Piece):
             else:
                 print("Roque feito com sucesso")
             return x
-        cor_do_jogador = cor_do_jogador.upper()
-        cor_do_jogador_adversario = ""
-        if cor_do_jogador == "WHITE":
-            cor_do_jogador_adversario = "BLACK"
-        elif cor_do_jogador == "BLACK":
-            cor_do_jogador_adversario = 'WHITE'
+        cor_do_jogador_adversario = ut.achar_a_cor_do_adversario(cor_do_jogador)
         if not (input[0].isalpha() and input[1].isdigit() and input[2].isalpha() and input[3].isdigit()):
             print("Movimento Inválido")
             return True
