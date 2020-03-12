@@ -55,7 +55,7 @@ class Main():
 x = Main()
 x.main()
 
-
+#movimento e5e6 inválido, ver o pq
 #ajeitar a função do afogamento
 #dividir a função movimentar_peça criando subfunções em utilmove
 #pensar em fazer o movimento En Passant
