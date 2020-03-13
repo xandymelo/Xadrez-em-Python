@@ -19,7 +19,7 @@ class Main():
         cor2 = 'Black'
         move = Move()
         chessBoard.printBoard()
-        chessBoard.gameTiles[5].pieceOnTile.possible_mov() 
+        x = chessBoard.gameTiles[29].pieceOnTile.possible_mov() 
         x = True
         while x:
             moviment = True
@@ -55,11 +55,9 @@ class Main():
 x = Main()
 x.main()
 
-#movimento e5e6 inválido, ver o pq
-#ajeitar a função do afogamento
+#40 lances sem tomar peça = empate
 #dividir a função movimentar_peça criando subfunções em utilmove
 #pensar em fazer o movimento En Passant
-# afogamento
 #40 lances sem tomar peça = empate
 #rei x rei e cavalo ou rei x rei e bispo = empate
 

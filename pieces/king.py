@@ -48,16 +48,16 @@ class King(Piece):
         if cor_do_jogador == "WHITE":
             for c in range(len(mov_possiveis)):
                 if ut.peca_ameacada(mov_possiveis[c],cor_do_jogador) or self.gameTiles[mov_possiveis[c]].pieceOnTile.toString().islower():
-                    remover.append(c)
+                    remover.append(mov_possiveis[c])
         if cor_do_jogador == "BLACK":
             for c in range(len(mov_possiveis)):
                 if ut.peca_ameacada(mov_possiveis[c],cor_do_jogador) or self.gameTiles[mov_possiveis[c]].pieceOnTile.toString().isupper():
-                    remover.append(c)
-        a = 0
+                    remover.append(mov_possiveis[c])
+        #a = 0
         for c in remover:
-            #mov_possiveis.remove(c)
-            del mov_possiveis[c - a]
-            a += 1
+            mov_possiveis.remove(c)
+            #del mov_possiveis[c - a]
+            #a += 1
         
         #if (cor_do_jogador == "BLACK"):
             #for c in mov_possiveis:
