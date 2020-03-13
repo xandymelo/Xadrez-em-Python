@@ -19,7 +19,7 @@ class Move(Piece):
         self.contagem_movimento_torre_rm_brancas = contagem_movimento_torre_rm_brancas
         self.contagem_movimento_torre_rma_brancas = contagem_movimento_torre_rma_brancas
         self.contagem_movimento_torre_rma_pretas = contagem_movimento_torre_rma_pretas
-    
+        self.contagem_de_movimento_sem_tomar_peca = 0
     
     
     
@@ -81,6 +81,12 @@ class Move(Piece):
         x = ut.testar_se_o_mov_eh_possivel(cor_do_jogador,local_atual_convertido,novo_local_convertido)
         if x:
             return True
+        if self.gameTiles[novo_local_convertido].pieceOnTile.toString() == '-':
+            self.contagem_de_movimento_sem_tomar_peca += 1
+        else:
+            self.contagem_de_movimento_sem_tomar_peca = 0
+        
+        
         self.gameTiles[novo_local_convertido] = self.gameTiles[local_atual_convertido]
         self.gameTiles[novo_local_convertido].tileCoordinate = novo_local_convertido
         self.gameTiles[novo_local_convertido].pieceOnTile.position = novo_local_convertido
@@ -89,6 +95,7 @@ class Move(Piece):
         if ut.xeque(cor_do_jogador_adversario):
             print('xeque!')
         return False
+
         #else:
             #print("Escolha uma jogada com a cor correta (" + cor_do_jogador + ")")
             #return True
@@ -148,3 +155,9 @@ class Move(Piece):
                 return False
 
 
+    def contagem_movimentos(self):
+        if self.contagem_de_movimento_sem_tomar_peca == 40:
+            print('Empate, 40 movimentos sem nenhuma peça ser tomada')
+            return True
+        else:
+            return False

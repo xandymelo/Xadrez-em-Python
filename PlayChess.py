@@ -38,6 +38,10 @@ class Main():
                 print("Empate, rei afogado")
                 x = False
                 moviment = False
+            if move.contagem_movimentos():
+                x = False
+                moviment = False
+                break
             while moviment:
                 jogada2 = input("Jogador2: ")
                 moviment = move.movimentar_peca(cor2,jogada2)
@@ -51,11 +55,14 @@ class Main():
                 print("Empate, rei afogado")
                 x = False
                 moviment = False
-
+            if move.contagem_movimentos():
+                x = False
+                moviment = False
+                break
 x = Main()
 x.main()
 
-#40 lances sem tomar peça = empate
+#reduzir o custo do programa
 #dividir a função movimentar_peça criando subfunções em utilmove
 #pensar em fazer o movimento En Passant
 #40 lances sem tomar peça = empate
