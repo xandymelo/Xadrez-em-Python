@@ -19,7 +19,7 @@ class Main():
         cor2 = 'Black'
         move = Move()
         chessBoard.printBoard()
-        x = chessBoard.gameTiles[29].pieceOnTile.possible_mov() 
+        #x = chessBoard.gameTiles[29].pieceOnTile.possible_mov() 
         x = True
         while x:
             moviment = True
