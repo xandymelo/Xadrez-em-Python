@@ -156,7 +156,7 @@ class Move(Piece):
 
 
     def contagem_movimentos(self):
-        if self.contagem_de_movimento_sem_tomar_peca == 40:
+        if self.contagem_de_movimento_sem_tomar_peca == 80:
             print('Empate, 40 movimentos sem nenhuma peça ser tomada')
             return True
         else:

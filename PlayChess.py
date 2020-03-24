@@ -15,7 +15,7 @@ class Main():
         ut = util()
         chessBoard = Board()
         chessBoard.createBoard()
-        cor1 = "white"
+        cor1 = "White"
         cor2 = 'Black'
         move = Move()
         chessBoard.printBoard()
@@ -62,10 +62,9 @@ class Main():
 x = Main()
 x.main()
 
-#reduzir o custo do programa
 #dividir a função movimentar_peça criando subfunções em utilmove
+#reduzir o custo do programa
 #pensar em fazer o movimento En Passant
-#40 lances sem tomar peça = empate
 #rei x rei e cavalo ou rei x rei e bispo = empate
 
 
