@@ -57,6 +57,12 @@ O tabuleiro é impresso como na figura abaixo:
  <img src=readme/tabuleiro1.jpg>
  
  <img src=readme/tabuleiro2.jpg>
+
+ TO DO LIST: 
+    #dividir a função movimentar_peça criando subfunções em utilmove
+    #reduzir o custo do programa
+    #pensar em fazer o movimento En Passant
+    #rei x rei e cavalo ou rei x rei e bispo = empate
  
 
  
