@@ -71,13 +71,17 @@ class Board(Piece):
         self.gameTiles[64] = Tile(64, Rook(64, "White"))
 
     def printBoard(self):
-        count = 0
+        countSquares = 0
+        countColumns = 8
         for tiles in range(1,65):
-            print(' l ',end=self.gameTiles[tiles].pieceOnTile.toString())
-            count += 1
-            if count == 8:
-                print('l ',end='\n')
-                count = 0
-        
+            if (tiles % 8 == 1):
+                print(countColumns, end='')
+                countColumns -= 1
+            print(' | ',end=self.gameTiles[tiles].pieceOnTile.toString())
+            countSquares += 1
+            if countSquares == 8:
+                print(' | ',end='\n')
+                countSquares = 0
+        print("X | A | B | C | D | E | F | G | H |")
 
         

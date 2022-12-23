@@ -9,7 +9,7 @@ class Knight(Piece):
         self.position = position
 
     def toString(self):
-        return "N" if self.alliance == "Black" else "n"
+        return "♘" if self.alliance == "Black" else "♞"
 
     def possible_mov(self):#Se o cavalo tiver na (primeira coluna + segunda coluna) ele perde os dois movimentos para esquerda, segue a mesma lógica para as 2 ultimas colunas, 2 primeiras linhas e 2 últimas linhas#
         cor_do_jogador = self.alliance.upper()

@@ -10,7 +10,7 @@ class Rook(Piece):
         self.position = position
 
     def toString(self):
-        return "R" if self.alliance == "Black" else "r"
+        return "♖" if self.alliance == "Black" else "♜"
 
     def possible_mov(self):
         cor_do_jogador = self.alliance.upper()

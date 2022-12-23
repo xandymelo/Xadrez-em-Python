@@ -8,7 +8,7 @@ class Pawn(Piece):
         self.position = position
 
     def toString(self):
-        return "P" if self.alliance == "Black" else "p"
+        return "♙" if self.alliance == "Black" else "♟"
 
     def possible_mov(self):
         cor_do_jogador = self.alliance.upper()

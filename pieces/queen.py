@@ -10,7 +10,7 @@ class Queen(Piece):
         self.position = position
 
     def toString(self):
-        return "Q" if self.alliance == "Black" else "q"
+        return "♕" if self.alliance == "Black" else "♛"
 
     def possible_mov(self):
         cor_do_jogador = self.alliance.upper()

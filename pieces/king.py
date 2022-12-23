@@ -9,7 +9,7 @@ class King(Piece):
         self.position = position
 
     def toString(self):
-        return "K" if self.alliance == "Black" else "k"
+        return "♔" if self.alliance == "Black" else "♚"
     
     def possible_mov(self):
         ut = util()

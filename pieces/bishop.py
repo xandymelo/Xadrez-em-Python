@@ -8,7 +8,7 @@ class Bishop(Piece):
         self.position = position
 
     def toString(self):
-        return "B" if self.alliance == "Black" else "b"
+        return "♗" if self.alliance == "Black" else "♝"
     
     def possible_mov(self):#COMO FAZER NÃO REBATER A DIAGONAL NO MOVIMENTO? RESTO DA DIVISÃO DA POSIÇÃO POR 8, SUBTRAI O RESTO POR 8, É O NUMERO DE POSIÇÕES NAQUELA DIREÇÃO DA DIAGONAL#
         #Isto é para achar as casa da Diagonal Superior Direita(DSD) das casas do bispo +9#
