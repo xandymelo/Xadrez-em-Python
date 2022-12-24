@@ -6,6 +6,6 @@ class Colors(Enum):
 class MoveTypes(Enum):
     MINOR_CASTLING = 1
     MAJOR_CASTLING = 2
-class MoveStatus(Enum):
-    VALID_MOVE = 1
-    INVALID_MOVE = 2
+class Status(Enum):
+    VALID = 1
+    INVALID = 2

@@ -10,3 +10,5 @@ class NullPiece():
 
     def toString(self):
         return "-"
+    def possible_mov(self):
+        return []

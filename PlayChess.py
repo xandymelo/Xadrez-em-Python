@@ -5,7 +5,7 @@ from pieces.piece import Piece
 from boards.move import Move
 from pieces.pawn import Pawn
 from boards.utilMove import util
-from util import Colors, MoveTypes, MoveStatus
+from util import Colors, MoveTypes, Status
 
 
 class Main():
@@ -29,15 +29,15 @@ class Main():
                 jogada1 = MoveTypes.MINOR_CASTLING if jogada1.lower() == "minorCastle" else jogada1
                 jogada1 = MoveTypes.MAJOR_CASTLING if jogada1.lower() == "majorCastle" else jogada1
                 moviment = move.move_piece(cor1,jogada1)
-                actualMoviment = True if moviment == MoveStatus.INVALID_MOVE else False
+                actualMoviment = True if moviment == Status.INVALID else False
             chessBoard.printBoard()
             actualMoviment = True
-            if ut.xeque_mate(cor2):
+            if ut.checkmate(cor2):
                 print("Xeque mate!! Brancas vencem")
                 x = False
                 actualMoviment = False
                 break
-            if ut.afogamento(cor2):
+            if ut.stalemate(cor2):
                 print("Empate, rei afogado")
                 x = False
                 actualMoviment = False
@@ -47,14 +47,17 @@ class Main():
                 break
             while actualMoviment:
                 jogada2 = input("Jogador2: ")
-                actualMoviment = move.move_piece(cor2,jogada2)
+                jogada2 = MoveTypes.MINOR_CASTLING if jogada1.lower() == "minorCastle" else jogada1
+                jogada2 = MoveTypes.MAJOR_CASTLING if jogada1.lower() == "majorCastle" else jogada1
+                moviment = move.move_piece(cor2,jogada2)
+                actualMoviment = True if moviment == Status.INVALID else False
             chessBoard.printBoard()
-            if ut.xeque_mate(cor1):
+            if ut.checkmate(cor1):
                 print("Xeque mate!! Pretas vencem")
                 x = False
                 actualMoviment = False
                 break
-            if ut.afogamento(cor1):
+            if ut.stalemate(cor1):
                 print("Empate, rei afogado")
                 x = False
                 actualMoviment = False

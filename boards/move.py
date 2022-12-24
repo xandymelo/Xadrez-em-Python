@@ -5,7 +5,7 @@ from boards.tile import Tile
 from pieces.piece import Piece
 from pieces.king import King
 from pieces.rook import Rook
-from util import Colors, MoveStatus, MoveTypes
+from util import Colors, Status, MoveTypes
 # import copy
 
 
@@ -34,22 +34,22 @@ class Move(Piece):
             move = self.minor_castle(color_of_the_player)
             if move:
                 print("Rock done successfully")
-                return MoveStatus.VALID_MOVE
+                return Status.VALID
             else:
                 print("Unable to rock")
-                return MoveStatus.INVALID_MOVE
+                return Status.INVALID
         elif moveType == MoveTypes.MAJOR_CASTLING:
             move = self.roque_maior(color_of_the_player)
             if move:
                 print("Rock done successfully")
-                return MoveStatus.VALID_MOVE
+                return Status.VALID
             else:
                 print("Unable to rock")
-                return MoveStatus.INVALID_MOVE
+                return Status.INVALID
         # cor_do_jogador_adversario = ut.achar_a_cor_do_adversario(color_of_the_player)
         if not (moveType[0].isalpha() and moveType[1].isdigit() and moveType[2].isalpha() and moveType[3].isdigit()):
             print("invalid move")
-            return MoveStatus.INVALID_MOVE
+            return Status.INVALID
         
 
         local_atual = moveType[0] + moveType[1]
@@ -59,8 +59,8 @@ class Move(Piece):
         #criar a parte que verifica se a jogada é válida#
         verificacao = ut.verificar_se_mov_eh_valido(local_atual_convertido,novo_local_convertido)
         if not verificacao:
-            print('Movimento Inválido')
-            return True
+            print('invalid move')
+            return Status.INVALID
 
 
         nome_da_peca = self.gameTiles[local_atual_convertido].pieceOnTile.toString()
@@ -94,9 +94,9 @@ class Move(Piece):
         self.gameTiles[novo_local_convertido].pieceOnTile.position = novo_local_convertido
         self.gameTiles[local_atual_convertido] = Tile(local_atual_convertido,NullPiece())
         print("Jogada feita com sucesso")
-        if ut.xeque(opponent_player_color):
+        if ut.check(opponent_player_color):
             print('xeque!')
-        return MoveStatus.VALID_MOVE
+        return Status.VALID
 
         #else:
             #print("Escolha uma jogada com a cor correta (" + cor_do_jogador + ")")
@@ -106,7 +106,7 @@ class Move(Piece):
         ut = util()
         color_of_the_player = color_of_the_player.upper()
         if color_of_the_player == Colors.WHITE:
-            if (self.contagem_movimento_rei_brancas > 0) or (self.contagem_movimento_torre_rm_brancas > 0) or (ut.peca_ameacada(62,color_of_the_player)) or (ut.peca_ameacada(63,color_of_the_player)) or (type(self.gameTiles[62].pieceOnTile) is not NullPiece ) or (type(self.gameTiles[63].pieceOnTile) is not NullPiece) or (ut.xeque(color_of_the_player)):
+            if (self.contagem_movimento_rei_brancas > 0) or (self.contagem_movimento_torre_rm_brancas > 0) or (ut.peca_ameacada(62,color_of_the_player)) or (ut.peca_ameacada(63,color_of_the_player)) or (type(self.gameTiles[62].pieceOnTile) is not NullPiece ) or (type(self.gameTiles[63].pieceOnTile) is not NullPiece) or (ut.check(color_of_the_player)):
                 return False
             else:
                 self.gameTiles[63] = Tile(63, King(63, Colors.WHITE))
@@ -115,7 +115,7 @@ class Move(Piece):
                 self.gameTiles[64] = Tile(64, NullPiece())
                 return True
         if color_of_the_player == 'BLACK':
-            if (self.contagem_movimento_rei_pretas > 0) or (self.contagem_movimento_torre_rm_pretas > 0) or (ut.peca_ameacada(6,color_of_the_player)) or (ut.peca_ameacada(7,color_of_the_player)) or (type(self.gameTiles[6].pieceOnTile) is not NullPiece) or (type(self.gameTiles[7].pieceOnTile) is not NullPiece) or (ut.xeque(color_of_the_player)):
+            if (self.contagem_movimento_rei_pretas > 0) or (self.contagem_movimento_torre_rm_pretas > 0) or (ut.peca_ameacada(6,color_of_the_player)) or (ut.peca_ameacada(7,color_of_the_player)) or (type(self.gameTiles[6].pieceOnTile) is not NullPiece) or (type(self.gameTiles[7].pieceOnTile) is not NullPiece) or (ut.check(color_of_the_player)):
                 return False
             else:
                 self.gameTiles[6] = Tile(6,Rook(6,Colors.BLACK))
@@ -129,7 +129,7 @@ class Move(Piece):
         ut = util()
         cor_do_jogador = cor_do_jogador.upper()
         if cor_do_jogador == "WHITE":
-            if (self.contagem_movimento_rei_brancas > 0) or (self.contagem_movimento_torre_rma_brancas > 0) or (ut.peca_ameacada(60,cor_do_jogador)) or (ut.peca_ameacada(59,cor_do_jogador)) or (ut.peca_ameacada(58,cor_do_jogador)) or (type(self.gameTiles[60].pieceOnTile) is not NullPiece ) or (type(self.gameTiles[59].pieceOnTile) is not NullPiece) or (type(self.gameTiles[58].pieceOnTile) is not NullPiece) or (ut.xeque(cor_do_jogador)):
+            if (self.contagem_movimento_rei_brancas > 0) or (self.contagem_movimento_torre_rma_brancas > 0) or (ut.peca_ameacada(60,cor_do_jogador)) or (ut.peca_ameacada(59,cor_do_jogador)) or (ut.peca_ameacada(58,cor_do_jogador)) or (type(self.gameTiles[60].pieceOnTile) is not NullPiece ) or (type(self.gameTiles[59].pieceOnTile) is not NullPiece) or (type(self.gameTiles[58].pieceOnTile) is not NullPiece) or (ut.check(cor_do_jogador)):
                 return True
             else:
                 self.gameTiles[59] = Tile(59, King(59, "White"))
@@ -138,7 +138,7 @@ class Move(Piece):
                 self.gameTiles[57] = Tile(64, NullPiece())
                 return False
         if cor_do_jogador == 'BLACK':
-            if (self.contagem_movimento_rei_pretas > 0) or (self.contagem_movimento_torre_rma_pretas > 0) or (ut.peca_ameacada(4,cor_do_jogador)) or (ut.peca_ameacada(3,cor_do_jogador)) or (ut.peca_ameacada(2,cor_do_jogador)) or (type(self.gameTiles[4].pieceOnTile) is not NullPiece) or (type(self.gameTiles[3].pieceOnTile) is not NullPiece) or (type(self.gameTiles[2].pieceOnTile) is not NullPiece) or (ut.xeque(cor_do_jogador)):
+            if (self.contagem_movimento_rei_pretas > 0) or (self.contagem_movimento_torre_rma_pretas > 0) or (ut.peca_ameacada(4,cor_do_jogador)) or (ut.peca_ameacada(3,cor_do_jogador)) or (ut.peca_ameacada(2,cor_do_jogador)) or (type(self.gameTiles[4].pieceOnTile) is not NullPiece) or (type(self.gameTiles[3].pieceOnTile) is not NullPiece) or (type(self.gameTiles[2].pieceOnTile) is not NullPiece) or (ut.check(cor_do_jogador)):
                 return True
             else:
                 self.gameTiles[4] = Tile(4,Rook(4,"Black"))

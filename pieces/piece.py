@@ -1,4 +1,4 @@
-
+from util import Colors
 
 class Piece():
 
@@ -61,14 +61,13 @@ class Piece():
         return mov_possiveisDIE
     
 
-    def todos_os_movimentos_possiveis(self,cor_do_jogador):#Note que não adicionei os movimentos dos reis, pois vou usar esta função para verificar xeque, e xeque mate#
+    def all_possible_moves(self,color_of_the_player):#Note que não adicionei os movimentos dos reis, pois vou usar esta função para verificar xeque, e xeque mate#
         mov_possiveis = []
-        cor_do_jogador = cor_do_jogador.upper()
-        if cor_do_jogador == "BLACK":
+        if color_of_the_player == Colors.BLACK:
             #mov_possiveis = torre(self.gameTiles.index("Torre2Pretas"),cor_do_jogador).mov_possiveis(self.gameTiles) + torre(self.gameTiles.index("TorrePretas"),cor_do_jogador).mov_possiveis(self.gameTiles) + bispo.bispo(self.gameTiles.index("BispoPPretas"),cor_do_jogador).mov_possiveis(self.gameTiles) + bispo.bispo(self.gameTiles.index("BispoBPretas"),cor_do_jogador).mov_possiveis(self.gameTiles) + cavalo(self.gameTiles.index("CavaloPretas"),cor_do_jogador).mov_possiveis(self.gameTiles) + cavalo(self.gameTiles.index("Cavalo2Pretas"),cor_do_jogador).mov_possiveis(self.gameTiles) + dama(self.gameTiles.index("DamaPretas"),cor_do_jogador).mov_possiveis(self.gameTiles.index("DamaPretas")) + peao(self.gameTiles.index("peãoPretas1"),cor_do_jogador).mov_possiveis(self.gameTiles.index("peãoPretas1")) + peao(self.gameTiles.index("peãoPretas2"),cor_do_jogador).mov_possiveis(self.gameTiles) + peao(self.gameTiles.index("peãoPretas3"),cor_do_jogador).mov_possiveis(self.gameTiles) + peao(self.gameTiles.index("peãoPretas4"),cor_do_jogador).mov_possiveis(self.gameTiles) + peao(self.gameTiles.index("peãoPretas5"),cor_do_jogador).mov_possiveis(self.gameTiles) + peao(self.gameTiles.index("peãoPretas6"),cor_do_jogador).mov_possiveis(self.gameTiles) + peao(self.gameTiles.index("peãoPretas7"),cor_do_jogador).mov_possiveis(self.gameTiles) + peao(self.gameTiles.index("peãoPretas8"),cor_do_jogador).mov_possiveis(self.gameTiles)
             for c in self.gameTiles:
                 if c.pieceOnTile.toString().isupper():
-                    if c.pieceOnTile.toString() == "P":
+                    if c.pieceOnTile.toString() == "♙":
                         if c.pieceOnTile.position in self.primeira_coluna:
                             mov_possiveis.append(c.pieceOnTile.position + 9)
                         elif c.pieceOnTile.position in self.ultima_coluna:
@@ -76,7 +75,7 @@ class Piece():
                         else:
                             mov_possiveis.append(c.pieceOnTile.position + 7)
                             mov_possiveis.append(c.pieceOnTile.position + 9)
-                    elif c.pieceOnTile.toString() == "K":
+                    elif c.pieceOnTile.toString() == "♔":
                         mov_possiveis.append(c.pieceOnTile.position + 8)
                         mov_possiveis.append(c.pieceOnTile.position - 8)
                         mov_possiveis.append(c.pieceOnTile.position + 7)
@@ -89,10 +88,10 @@ class Piece():
                     else:
                         for d in c.pieceOnTile.possible_mov():
                             mov_possiveis.append(d)
-        if cor_do_jogador == "WHITE":
+        if color_of_the_player == Colors.WHITE:
             for c in self.gameTiles:
                 if c.pieceOnTile.toString().islower():
-                    if c.pieceOnTile.toString() == "p":
+                    if c.pieceOnTile.toString() == "♟":
                         if c.pieceOnTile.position in self.primeira_coluna:
                             mov_possiveis.append(c.pieceOnTile.position - 7)
                         elif c.pieceOnTile.position in self.ultima_coluna:
@@ -101,7 +100,7 @@ class Piece():
                             mov_possiveis.append(c.pieceOnTile.position - 7)
                             mov_possiveis.append(c.pieceOnTile.position - 9)
                     
-                    elif c.pieceOnTile.toString() == "k":
+                    elif c.pieceOnTile.toString() == "♚":
                         mov_possiveis.append(c.pieceOnTile.position + 8)
                         mov_possiveis.append(c.pieceOnTile.position - 8)
                         mov_possiveis.append(c.pieceOnTile.position + 7)
