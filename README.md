@@ -61,6 +61,8 @@ O tabuleiro é impresso como na figura abaixo:
  TO DO LIST: 
     #dividir a função movimentar_peça criando subfunções em utilmove
     #reduzir o custo do programa
+    #refatorar a função move_piece
+    #refatorar a função xeque
     #pensar em fazer o movimento En Passant
     #rei x rei e cavalo ou rei x rei e bispo = empate
  

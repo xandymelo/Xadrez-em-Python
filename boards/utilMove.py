@@ -86,11 +86,11 @@ class util(Piece):
         cor_do_jogador = cor_do_jogador.upper()
         if cor_do_jogador == "BLACK":
             for c in self.gameTiles:
-                if c.pieceOnTile.toString() == "K":
+                if c.pieceOnTile.toString() == "♔":
                     casa_do_rei = c.pieceOnTile.position
         if cor_do_jogador == "WHITE":
             for c in self.gameTiles:
-                if c.pieceOnTile.toString() == "k":
+                if c.pieceOnTile.toString() == "♚":
                     casa_do_rei = c.pieceOnTile.position
         return casa_do_rei
     def testar_se_o_mov_eh_possivel(self,cor_do_jogador,local_atual_convertido,novo_local_convertido):
@@ -153,11 +153,11 @@ class util(Piece):
             return True
         return False
 
-    def achar_a_cor_do_adversario(self,cor_do_jogador):
-        cor_do_jogador = cor_do_jogador.upper()
-        cor_do_jogador_adversario = ""
-        if cor_do_jogador == "WHITE":
-            cor_do_jogador_adversario = "BLACK"
-        elif cor_do_jogador == "BLACK":
-            cor_do_jogador_adversario = 'WHITE'
-        return cor_do_jogador_adversario
+    # def achar_a_cor_do_adversario(self,cor_do_jogador):
+    #     cor_do_jogador = cor_do_jogador.upper()
+    #     cor_do_jogador_adversario = ""
+    #     if cor_do_jogador == "WHITE":
+    #         cor_do_jogador_adversario = "BLACK"
+    #     elif cor_do_jogador == "BLACK":
+    #         cor_do_jogador_adversario = 'WHITE'
+    #     return cor_do_jogador_adversario
