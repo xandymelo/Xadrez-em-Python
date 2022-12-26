@@ -46,8 +46,7 @@ class Move(Piece):
             else:
                 print("Unable to rock")
                 return Status.INVALID
-        # cor_do_jogador_adversario = ut.achar_a_cor_do_adversario(color_of_the_player)
-        if not (moveType[0].isalpha() and moveType[1].isdigit() and moveType[2].isalpha() and moveType[3].isdigit()):
+        if (len(moveType) == 0) or not (moveType[0].isalpha() and moveType[1].isdigit() and moveType[2].isalpha() and moveType[3].isdigit()):
             print("invalid move")
             return Status.INVALID
         
@@ -104,7 +103,6 @@ class Move(Piece):
     
     def minor_castle(self,color_of_the_player):
         ut = util()
-        color_of_the_player = color_of_the_player.upper()
         if color_of_the_player == Colors.WHITE:
             if (self.contagem_movimento_rei_brancas > 0) or (self.contagem_movimento_torre_rm_brancas > 0) or (ut.peca_ameacada(62,color_of_the_player)) or (ut.peca_ameacada(63,color_of_the_player)) or (type(self.gameTiles[62].pieceOnTile) is not NullPiece ) or (type(self.gameTiles[63].pieceOnTile) is not NullPiece) or (ut.check(color_of_the_player)):
                 return False
@@ -114,7 +112,7 @@ class Move(Piece):
                 self.gameTiles[61] = Tile(61, NullPiece())
                 self.gameTiles[64] = Tile(64, NullPiece())
                 return True
-        if color_of_the_player == 'BLACK':
+        if color_of_the_player == Colors.BLACK:
             if (self.contagem_movimento_rei_pretas > 0) or (self.contagem_movimento_torre_rm_pretas > 0) or (ut.peca_ameacada(6,color_of_the_player)) or (ut.peca_ameacada(7,color_of_the_player)) or (type(self.gameTiles[6].pieceOnTile) is not NullPiece) or (type(self.gameTiles[7].pieceOnTile) is not NullPiece) or (ut.check(color_of_the_player)):
                 return False
             else:

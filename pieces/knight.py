@@ -1,4 +1,5 @@
 from pieces.piece import Piece
+from util import Colors
 
 class Knight(Piece):
     
@@ -9,7 +10,7 @@ class Knight(Piece):
         self.position = position
 
     def toString(self):
-        return "♘" if self.alliance == "Black" else "♞"
+        return "♘" if self.alliance == Colors.BLACK else "♞"
 
     def possible_mov(self):#Se o cavalo tiver na (primeira coluna + segunda coluna) ele perde os dois movimentos para esquerda, segue a mesma lógica para as 2 ultimas colunas, 2 primeiras linhas e 2 últimas linhas#
         cor_do_jogador = self.alliance.upper()

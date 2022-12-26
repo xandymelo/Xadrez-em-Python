@@ -56,10 +56,9 @@ class util(Piece):
         else:
             return True
 
-    def peca_ameacada(self,local_atual,color_of_the_player):
-        cor_do_jogador_adversario = Colors.BLACK if color_of_the_player == Colors.WHITE else Colors.WHITE
-        color_of_the_player = color_of_the_player.upper()
-        if local_atual in self.all_possible_moves(cor_do_jogador_adversario):
+    def peca_ameacada(self,current_location,color_of_the_player):
+        opponent_player_color = Colors.BLACK if color_of_the_player == Colors.WHITE else Colors.WHITE
+        if current_location in self.all_possible_moves(opponent_player_color):
             return True
         else:
             return False
@@ -85,12 +84,14 @@ class util(Piece):
         if color_of_the_player == Colors.BLACK:
             for c in self.gameTiles:
                 if c.pieceOnTile.toString() == "♔":
-                    casa_do_rei = c.pieceOnTile.position
+                    kings_house = c.pieceOnTile.position
+                    break
         if color_of_the_player == Colors.WHITE:
             for c in self.gameTiles:
                 if c.pieceOnTile.toString() == "♚":
-                    casa_do_rei = c.pieceOnTile.position
-        return casa_do_rei
+                    kings_house = c.pieceOnTile.position
+                    break
+        return kings_house
     def testar_se_o_mov_eh_possivel(self,cor_do_jogador,local_atual_convertido,novo_local_convertido):
         ut = util()
         x = copy.deepcopy(self.gameTiles[novo_local_convertido])

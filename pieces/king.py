@@ -1,5 +1,6 @@
 from pieces.piece import Piece
 from boards.utilMove import util
+from util import Colors
 
 class King(Piece):
 
@@ -9,11 +10,11 @@ class King(Piece):
         self.position = position
 
     def toString(self):
-        return "♔" if self.alliance == "Black" else "♚"
+        return "♔" if self.alliance == Colors.BLACK else "♚"
     
     def possible_mov(self):
         ut = util()
-        cor_do_jogador = self.alliance.upper()
+        cor_do_jogador = self.alliance
         mov_possiveis = []
         mov_possiveis.append(self.position + 8)
         mov_possiveis.append(self.position - 8)
@@ -45,29 +46,15 @@ class King(Piece):
                 mov_possiveis.remove(self.position - 7)
 
         remover = []
-        if cor_do_jogador == "WHITE":
+        if cor_do_jogador == Colors.WHITE:
             for c in range(len(mov_possiveis)):
                 if ut.peca_ameacada(mov_possiveis[c],cor_do_jogador) or self.gameTiles[mov_possiveis[c]].pieceOnTile.toString().islower():
                     remover.append(mov_possiveis[c])
-        if cor_do_jogador == "BLACK":
+        if cor_do_jogador == Colors.BLACK:
             for c in range(len(mov_possiveis)):
                 if ut.peca_ameacada(mov_possiveis[c],cor_do_jogador) or self.gameTiles[mov_possiveis[c]].pieceOnTile.toString().isupper():
                     remover.append(mov_possiveis[c])
-        #a = 0
         for c in remover:
             mov_possiveis.remove(c)
-            #del mov_possiveis[c - a]
-            #a += 1
-        
-        #if (cor_do_jogador == "BLACK"):
-            #for c in mov_possiveis:
-                #if (c in self.todos_os_movimentos_possiveis("White")) or (self.gameTiles[c].pieceOnTile.toString().isupper()):
-                    #remover.append(c)
-        #elif cor_do_jogador == "WHITE":
-            #for c in mov_possiveis:
-                #if (c in self.todos_os_movimentos_possiveis("Black")) or (self.gameTiles[c].pieceOnTile.toString().islower()):
-                    #remover.append(c)
-        #for c in remover:
-            #mov_possiveis.remove(c)
         return mov_possiveis
         

@@ -26,8 +26,7 @@ class Main():
             actualMoviment = True
             while actualMoviment:
                 jogada1 = input("Jogador1: ")
-                jogada1 = MoveTypes.MINOR_CASTLING if jogada1.lower() == "minorCastle" else jogada1
-                jogada1 = MoveTypes.MAJOR_CASTLING if jogada1.lower() == "majorCastle" else jogada1
+                jogada1 = MoveTypes.MINOR_CASTLING if jogada1.lower() == "minorcastle" else MoveTypes.MAJOR_CASTLING if jogada1.lower() == "majorcastle" else jogada1
                 moviment = move.move_piece(cor1,jogada1)
                 actualMoviment = True if moviment == Status.INVALID else False
             chessBoard.printBoard()
@@ -47,8 +46,7 @@ class Main():
                 break
             while actualMoviment:
                 jogada2 = input("Jogador2: ")
-                jogada2 = MoveTypes.MINOR_CASTLING if jogada1.lower() == "minorCastle" else jogada1
-                jogada2 = MoveTypes.MAJOR_CASTLING if jogada1.lower() == "majorCastle" else jogada1
+                jogada2 = MoveTypes.MINOR_CASTLING if jogada2.lower() == "minorcastle" else MoveTypes.MAJOR_CASTLING if jogada2.lower() == "majorcastle" else jogada2
                 moviment = move.move_piece(cor2,jogada2)
                 actualMoviment = True if moviment == Status.INVALID else False
             chessBoard.printBoard()

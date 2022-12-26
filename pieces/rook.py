@@ -1,4 +1,5 @@
 from pieces.piece import Piece
+from util import Colors
 
 class Rook(Piece):
     
@@ -10,7 +11,7 @@ class Rook(Piece):
         self.position = position
 
     def toString(self):
-        return "♖" if self.alliance == "Black" else "♜"
+        return "♖" if self.alliance == Colors.BLACK else "♜"
 
     def possible_mov(self):
         cor_do_jogador = self.alliance.upper()
