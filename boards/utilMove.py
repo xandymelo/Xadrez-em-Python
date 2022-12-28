@@ -8,7 +8,7 @@ class util(Piece):
     def __init__(self):
         pass
 
-    def converter_inputs(self,input):
+    def convert_positions(self,input):
         novo_local_provisorio = input[0] + input[1]
         novo_local = 0
         if novo_local_provisorio[0] == "a":
@@ -32,7 +32,7 @@ class util(Piece):
     
 
     
-    def check(self,color_of_the_player):#Aqui irei verificar se a casa do rei está na lista de movimentos possiveis (lembrando que a função de todos os movimentos possiveis não inclui os movimentos do rei  #
+    def is_check(self,color_of_the_player):#Aqui irei verificar se a casa do rei está na lista de movimentos possiveis (lembrando que a função de todos os movimentos possiveis não inclui os movimentos do rei  #
         kings_house = ""
         if color_of_the_player == Colors.BLACK:
             kings_house = self.get_kings_house(color_of_the_player)
@@ -49,7 +49,7 @@ class util(Piece):
             else:
                 return False
 
-    def verificar_se_mov_eh_valido(self,local_atual_convertido,novo_local_convertido):
+    def check_if_move_is_valid(self,local_atual_convertido,novo_local_convertido):
         mov_possiveis_da_peca = self.gameTiles[local_atual_convertido].pieceOnTile.possible_mov()
         if (not (novo_local_convertido in mov_possiveis_da_peca)):
             return False
@@ -67,7 +67,7 @@ class util(Piece):
         if self.peca_ameacada(self.position,cor_do_jogador):
             x = copy.deepcopy(self.gameTiles[self.position])
             self.gameTiles[self.position] = Tile(self.position, NullPiece())  #usar deepcopy
-            if self.check(self.alliance):
+            if self.is_check(self.alliance):
                 self.gameTiles[self.position] = x
                 return True
             else:
@@ -76,7 +76,7 @@ class util(Piece):
         else:
             return False
     def checkmate(self,color_of_the_player):
-        if self.check(color_of_the_player):
+        if self.is_check(color_of_the_player):
             return self.testar_se_o_rei_tem_movimentos(color_of_the_player)
         return False
                 
@@ -92,28 +92,28 @@ class util(Piece):
                     kings_house = c.pieceOnTile.position
                     break
         return kings_house
-    def testar_se_o_mov_eh_possivel(self,cor_do_jogador,local_atual_convertido,novo_local_convertido):
+    def check_if_move_is_possible(self,color_of_the_player,converted_current_location,converted_new_location):
         ut = util()
-        x = copy.deepcopy(self.gameTiles[novo_local_convertido])
-        self.gameTiles[novo_local_convertido] = self.gameTiles[local_atual_convertido]
-        self.gameTiles[novo_local_convertido].tileCoordinate = novo_local_convertido
-        self.gameTiles[novo_local_convertido].pieceOnTile.position = novo_local_convertido
-        self.gameTiles[local_atual_convertido] = Tile(local_atual_convertido,NullPiece())
-        if ut.check(cor_do_jogador):
-            self.gameTiles[local_atual_convertido] = self.gameTiles[novo_local_convertido]
-            self.gameTiles[local_atual_convertido].tileCoordinate = local_atual_convertido
-            self.gameTiles[local_atual_convertido].pieceOnTile.position = local_atual_convertido
-            self.gameTiles[novo_local_convertido] = x
+        x = copy.deepcopy(self.gameTiles[converted_new_location])
+        self.gameTiles[converted_new_location] = self.gameTiles[converted_current_location]
+        self.gameTiles[converted_new_location].tileCoordinate = converted_new_location
+        self.gameTiles[converted_new_location].pieceOnTile.position = converted_new_location
+        self.gameTiles[converted_current_location] = Tile(converted_current_location,NullPiece())
+        if ut.is_check(color_of_the_player):
+            self.gameTiles[converted_current_location] = self.gameTiles[converted_new_location]
+            self.gameTiles[converted_current_location].tileCoordinate = converted_current_location
+            self.gameTiles[converted_current_location].pieceOnTile.position = converted_current_location
+            self.gameTiles[converted_new_location] = x
             return True
-        self.gameTiles[local_atual_convertido] = self.gameTiles[novo_local_convertido]
-        self.gameTiles[local_atual_convertido].tileCoordinate = local_atual_convertido
-        self.gameTiles[local_atual_convertido].pieceOnTile.position = local_atual_convertido
-        self.gameTiles[novo_local_convertido] = x
+        self.gameTiles[converted_current_location] = self.gameTiles[converted_new_location]
+        self.gameTiles[converted_current_location].tileCoordinate = converted_current_location
+        self.gameTiles[converted_current_location].pieceOnTile.position = converted_current_location
+        self.gameTiles[converted_new_location] = x
         return False
     
     
     def stalemate(self,color_of_the_player):
-        if not self.check(color_of_the_player):
+        if not self.is_check(color_of_the_player):
             #cor_do_jogador_adversario = self.achar_a_cor_do_adversario(cor_do_jogador)
             casa_do_rei = self.get_kings_house(color_of_the_player)
             x = self.all_possible_moves(color_of_the_player)
@@ -144,7 +144,7 @@ class util(Piece):
             return True
         soma = 0 
         for c in self.gameTiles[casa_do_rei].pieceOnTile.possible_mov():
-            x = self.testar_se_o_mov_eh_possivel(cor_do_jogador,casa_do_rei,c)
+            x = self.check_if_move_is_possible(cor_do_jogador,casa_do_rei,c)
             if x:
                 soma += 1
         if soma == len(self.gameTiles[casa_do_rei].pieceOnTile.possible_mov()):

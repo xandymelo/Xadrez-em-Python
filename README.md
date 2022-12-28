@@ -62,8 +62,7 @@ O tabuleiro é impresso como na figura abaixo:
     #dividir a função movimentar_peça criando subfunções em utilmove
     #reduzir o custo do programa
     #refatorar a função move_piece
-    #ajustar o roque maior
-    #poder mexer peças inimigas
+    #ajustar o roque maior 
     #bug comer peça aliada
     #pensar em fazer o movimento En Passant
     #rei x rei e cavalo ou rei x rei e bispo = empate

@@ -14,7 +14,6 @@ class Rook(Piece):
         return "♖" if self.alliance == Colors.BLACK else "♜"
 
     def possible_mov(self):
-        cor_do_jogador = self.alliance.upper()
         #HD = horizontal direita#
         mov_possiveis_HD = [x for x in range (self.position + 1, 65)]
         while len (mov_possiveis_HD) > 8 - (self.position % 8):

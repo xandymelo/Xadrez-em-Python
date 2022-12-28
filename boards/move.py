@@ -13,18 +13,14 @@ from util import Colors, Status, MoveTypes
 
 
 class Move(Piece):
-    def __init__(self,contagem_movimento_rei_pretas = 0,contagem_movimento_rei_brancas = 0,contagem_movimento_torre_rm_pretas = 0,contagem_movimento_torre_rm_brancas = 0,contagem_movimento_torre_rma_brancas = 0,contagem_movimento_torre_rma_pretas = 0):
-        self.contagem_movimento_rei_pretas = contagem_movimento_rei_pretas
-        self.contagem_movimento_rei_brancas = contagem_movimento_rei_brancas
-        self.contagem_movimento_torre_rm_pretas = contagem_movimento_torre_rm_pretas
-        self.contagem_movimento_torre_rm_brancas = contagem_movimento_torre_rm_brancas
-        self.contagem_movimento_torre_rma_brancas = contagem_movimento_torre_rma_brancas
-        self.contagem_movimento_torre_rma_pretas = contagem_movimento_torre_rma_pretas
-        self.contagem_de_movimento_sem_tomar_peca = 0
-    
-    
-    
-    
+    def __init__(self,black_king_move_counts = 0,white_king_move_counts = 0,count_move_black_king_rook = 0,count_move_white_king_rook = 0,count_move_white_queen_rook = 0,count_move_black_queen_rook = 0):
+        self.black_king_move_counts = black_king_move_counts
+        self.white_king_move_counts = white_king_move_counts
+        self.count_move_black_king_rook = count_move_black_king_rook
+        self.count_move_white_king_rook = count_move_white_king_rook
+        self.count_move_white_queen_rook = count_move_white_queen_rook
+        self.count_move_black_queen_rook = count_move_black_queen_rook
+        self.move_count_without_taking_piece = 0
     
     #AJEITAR ESSA FUNÇÃO E COLOCAR OUTRAS#
     def move_piece(self,color_of_the_player,moveType): #mudar o formato do input para o formatov'd2d4'#
@@ -51,49 +47,48 @@ class Move(Piece):
             return Status.INVALID
         
 
-        local_atual = moveType[0] + moveType[1]
-        novo_local = moveType[2] + moveType[3]
-        local_atual_convertido = ut.converter_inputs(local_atual)
-        novo_local_convertido = ut.converter_inputs(novo_local)
+        current_location = moveType[0] + moveType[1]
+        new_location = moveType[2] + moveType[3]
+        converted_current_location = ut.convert_positions(current_location)
+        converted_new_location = ut.convert_positions(new_location)
+            
         #criar a parte que verifica se a jogada é válida#
-        verificacao = ut.verificar_se_mov_eh_valido(local_atual_convertido,novo_local_convertido)
-        if not verificacao:
+        verification = ut.check_if_move_is_valid(converted_current_location,converted_new_location)
+        if not verification or (self.gameTiles[converted_current_location].pieceOnTile.alliance != color_of_the_player):
             print('invalid move')
             return Status.INVALID
 
 
-        nome_da_peca = self.gameTiles[local_atual_convertido].pieceOnTile.toString()
-        if nome_da_peca == "K":
-            self.contagem_movimento_rei_pretas += 1
-        if nome_da_peca == "k":
-            self.contagem_movimento_rei_brancas += 1
-        if nome_da_peca == "R":
-            if local_atual_convertido == 64:
-                self.contagem_movimento_torre_rm_pretas += 1
-            if local_atual_convertido == 57:
-                self.contagem_movimento_torre_rma_pretas += 1
-        if nome_da_peca == "r":
-            if local_atual_convertido == 8:
-                self.contagem_movimento_torre_rm_brancas += 1
-            if local_atual_convertido == 1:
-                self.contagem_movimento_torre_rma_brancas += 1
-        #if cor_do_jogador in nome_da_peca:
-        #if (self.gameTiles[novo_local_convertido] is NullPiece):
-        move = ut.testar_se_o_mov_eh_possivel(color_of_the_player,local_atual_convertido,novo_local_convertido)
+        piece_name = self.gameTiles[converted_current_location].pieceOnTile.toString()
+        if piece_name == "♔":
+            self.black_king_move_counts += 1
+        if piece_name == "♚":
+            self.white_king_move_counts += 1
+        if piece_name == "♖":
+            if converted_current_location == 64:
+                self.count_move_black_king_rook += 1
+            if converted_current_location == 57:
+                self.count_move_black_queen_rook += 1
+        if piece_name == "♜":
+            if converted_current_location == 8:
+                self.count_move_white_king_rook += 1
+            if converted_current_location == 1:
+                self.count_move_white_queen_rook += 1
+        move = ut.check_if_move_is_possible(color_of_the_player,converted_current_location,converted_new_location)
         if move:
             return True
-        if self.gameTiles[novo_local_convertido].pieceOnTile.toString() == '-':
-            self.contagem_de_movimento_sem_tomar_peca += 1
+        if self.gameTiles[converted_new_location].pieceOnTile.toString() == '-':
+            self.move_count_without_taking_piece += 1
         else:
-            self.contagem_de_movimento_sem_tomar_peca = 0
+            self.move_count_without_taking_piece = 0
         
         
-        self.gameTiles[novo_local_convertido] = self.gameTiles[local_atual_convertido]
-        self.gameTiles[novo_local_convertido].tileCoordinate = novo_local_convertido
-        self.gameTiles[novo_local_convertido].pieceOnTile.position = novo_local_convertido
-        self.gameTiles[local_atual_convertido] = Tile(local_atual_convertido,NullPiece())
+        self.gameTiles[converted_new_location] = self.gameTiles[converted_current_location]
+        self.gameTiles[converted_new_location].tileCoordinate = converted_new_location
+        self.gameTiles[converted_new_location].pieceOnTile.position = converted_new_location
+        self.gameTiles[converted_current_location] = Tile(converted_current_location,NullPiece())
         print("Jogada feita com sucesso")
-        if ut.check(opponent_player_color):
+        if ut.is_check(opponent_player_color):
             print('xeque!')
         return Status.VALID
 
@@ -104,7 +99,7 @@ class Move(Piece):
     def minor_castle(self,color_of_the_player):
         ut = util()
         if color_of_the_player == Colors.WHITE:
-            if (self.contagem_movimento_rei_brancas > 0) or (self.contagem_movimento_torre_rm_brancas > 0) or (ut.peca_ameacada(62,color_of_the_player)) or (ut.peca_ameacada(63,color_of_the_player)) or (type(self.gameTiles[62].pieceOnTile) is not NullPiece ) or (type(self.gameTiles[63].pieceOnTile) is not NullPiece) or (ut.check(color_of_the_player)):
+            if (self.white_king_move_counts > 0) or (self.count_move_white_king_rook > 0) or (ut.peca_ameacada(62,color_of_the_player)) or (ut.peca_ameacada(63,color_of_the_player)) or (type(self.gameTiles[62].pieceOnTile) is not NullPiece ) or (type(self.gameTiles[63].pieceOnTile) is not NullPiece) or (ut.is_check(color_of_the_player)):
                 return False
             else:
                 self.gameTiles[63] = Tile(63, King(63, Colors.WHITE))
@@ -113,7 +108,7 @@ class Move(Piece):
                 self.gameTiles[64] = Tile(64, NullPiece())
                 return True
         if color_of_the_player == Colors.BLACK:
-            if (self.contagem_movimento_rei_pretas > 0) or (self.contagem_movimento_torre_rm_pretas > 0) or (ut.peca_ameacada(6,color_of_the_player)) or (ut.peca_ameacada(7,color_of_the_player)) or (type(self.gameTiles[6].pieceOnTile) is not NullPiece) or (type(self.gameTiles[7].pieceOnTile) is not NullPiece) or (ut.check(color_of_the_player)):
+            if (self.black_king_move_counts > 0) or (self.count_move_black_king_rook > 0) or (ut.peca_ameacada(6,color_of_the_player)) or (ut.peca_ameacada(7,color_of_the_player)) or (type(self.gameTiles[6].pieceOnTile) is not NullPiece) or (type(self.gameTiles[7].pieceOnTile) is not NullPiece) or (ut.is_check(color_of_the_player)):
                 return False
             else:
                 self.gameTiles[6] = Tile(6,Rook(6,Colors.BLACK))
@@ -127,7 +122,7 @@ class Move(Piece):
         ut = util()
         cor_do_jogador = cor_do_jogador.upper()
         if cor_do_jogador == "WHITE":
-            if (self.contagem_movimento_rei_brancas > 0) or (self.contagem_movimento_torre_rma_brancas > 0) or (ut.peca_ameacada(60,cor_do_jogador)) or (ut.peca_ameacada(59,cor_do_jogador)) or (ut.peca_ameacada(58,cor_do_jogador)) or (type(self.gameTiles[60].pieceOnTile) is not NullPiece ) or (type(self.gameTiles[59].pieceOnTile) is not NullPiece) or (type(self.gameTiles[58].pieceOnTile) is not NullPiece) or (ut.check(cor_do_jogador)):
+            if (self.white_king_move_counts > 0) or (self.count_move_white_queen_rook > 0) or (ut.peca_ameacada(60,cor_do_jogador)) or (ut.peca_ameacada(59,cor_do_jogador)) or (ut.peca_ameacada(58,cor_do_jogador)) or (type(self.gameTiles[60].pieceOnTile) is not NullPiece ) or (type(self.gameTiles[59].pieceOnTile) is not NullPiece) or (type(self.gameTiles[58].pieceOnTile) is not NullPiece) or (ut.is_check(cor_do_jogador)):
                 return True
             else:
                 self.gameTiles[59] = Tile(59, King(59, "White"))
@@ -136,7 +131,7 @@ class Move(Piece):
                 self.gameTiles[57] = Tile(64, NullPiece())
                 return False
         if cor_do_jogador == 'BLACK':
-            if (self.contagem_movimento_rei_pretas > 0) or (self.contagem_movimento_torre_rma_pretas > 0) or (ut.peca_ameacada(4,cor_do_jogador)) or (ut.peca_ameacada(3,cor_do_jogador)) or (ut.peca_ameacada(2,cor_do_jogador)) or (type(self.gameTiles[4].pieceOnTile) is not NullPiece) or (type(self.gameTiles[3].pieceOnTile) is not NullPiece) or (type(self.gameTiles[2].pieceOnTile) is not NullPiece) or (ut.check(cor_do_jogador)):
+            if (self.black_king_move_counts > 0) or (self.count_move_black_queen_rook > 0) or (ut.peca_ameacada(4,cor_do_jogador)) or (ut.peca_ameacada(3,cor_do_jogador)) or (ut.peca_ameacada(2,cor_do_jogador)) or (type(self.gameTiles[4].pieceOnTile) is not NullPiece) or (type(self.gameTiles[3].pieceOnTile) is not NullPiece) or (type(self.gameTiles[2].pieceOnTile) is not NullPiece) or (ut.is_check(cor_do_jogador)):
                 return True
             else:
                 self.gameTiles[4] = Tile(4,Rook(4,"Black"))
@@ -147,7 +142,7 @@ class Move(Piece):
 
 
     def contagem_movimentos(self):
-        if self.contagem_de_movimento_sem_tomar_peca == 80:
+        if self.move_count_without_taking_piece == 80:
             print('Empate, 40 movimentos sem nenhuma peça ser tomada')
             return True
         else:
