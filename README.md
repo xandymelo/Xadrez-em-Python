@@ -63,7 +63,6 @@ O tabuleiro é impresso como na figura abaixo:
     #reduzir o custo do programa
     #refatorar a função move_piece
     #ajustar o roque maior 
-    #bug comer peça aliada
     #pensar em fazer o movimento En Passant
     #rei x rei e cavalo ou rei x rei e bispo = empate
  

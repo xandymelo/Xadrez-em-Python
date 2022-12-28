@@ -93,8 +93,10 @@ class util(Piece):
                     break
         return kings_house
     def check_if_move_is_possible(self,color_of_the_player,converted_current_location,converted_new_location):
+        if ( self.gameTiles[converted_new_location].pieceOnTile.alliance == color_of_the_player ):
+            return False
         ut = util()
-        x = copy.deepcopy(self.gameTiles[converted_new_location])
+        copy_new_location_tile = copy.deepcopy(self.gameTiles[converted_new_location])
         self.gameTiles[converted_new_location] = self.gameTiles[converted_current_location]
         self.gameTiles[converted_new_location].tileCoordinate = converted_new_location
         self.gameTiles[converted_new_location].pieceOnTile.position = converted_new_location
@@ -103,13 +105,13 @@ class util(Piece):
             self.gameTiles[converted_current_location] = self.gameTiles[converted_new_location]
             self.gameTiles[converted_current_location].tileCoordinate = converted_current_location
             self.gameTiles[converted_current_location].pieceOnTile.position = converted_current_location
-            self.gameTiles[converted_new_location] = x
-            return True
+            self.gameTiles[converted_new_location] = copy_new_location_tile
+            return False
         self.gameTiles[converted_current_location] = self.gameTiles[converted_new_location]
         self.gameTiles[converted_current_location].tileCoordinate = converted_current_location
         self.gameTiles[converted_current_location].pieceOnTile.position = converted_current_location
-        self.gameTiles[converted_new_location] = x
-        return False
+        self.gameTiles[converted_new_location] = copy_new_location_tile
+        return True
     
     
     def stalemate(self,color_of_the_player):

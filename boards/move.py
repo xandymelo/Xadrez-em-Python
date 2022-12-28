@@ -75,8 +75,9 @@ class Move(Piece):
             if converted_current_location == 1:
                 self.count_move_white_queen_rook += 1
         move = ut.check_if_move_is_possible(color_of_the_player,converted_current_location,converted_new_location)
-        if move:
-            return True
+        if not move:
+            print('invalid move')
+            return Status.INVALID
         if self.gameTiles[converted_new_location].pieceOnTile.toString() == '-':
             self.move_count_without_taking_piece += 1
         else:
