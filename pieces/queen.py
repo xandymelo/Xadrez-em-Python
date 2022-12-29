@@ -14,7 +14,7 @@ class Queen(Piece):
         return "♕" if self.alliance == Colors.BLACK else "♛"
 
     def possible_mov(self):
-        cor_do_jogador = self.alliance.upper()
+        color_of_the_player = self.alliance
         mov_possiveis_HD = [x for x in range (self.position + 1, 65)]
         while len (mov_possiveis_HD) > 8 - (self.position % 8):
             mov_possiveis_HD.pop ()
@@ -33,7 +33,6 @@ class Queen(Piece):
         mov_possiveis_VI = [x for x in range(self.position,0,-8)]
         mov_possiveis_VI.remove (self.position)
         mov_possiveis_VI = self.remover_movimentos_invalidos_diagonal_inferior(mov_possiveis_VI)
-        cor_do_jogador = cor_do_jogador.upper()
         #Isto é para achar as casa da Diagonal Superior Direita(DSD) das casas do bispo +9#
         mov_possiveisDSD = [x for x in range (self.position, 65, 9)]
         mov_possiveisDSD.remove (self.position)

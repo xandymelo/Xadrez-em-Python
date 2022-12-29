@@ -35,7 +35,7 @@ class Move(Piece):
                 print("Unable to rock")
                 return Status.INVALID
         elif moveType == MoveTypes.MAJOR_CASTLING:
-            move = self.roque_maior(color_of_the_player)
+            move = self.major_castle(color_of_the_player)
             if move:
                 print("Rock done successfully")
                 return Status.VALID
@@ -119,11 +119,10 @@ class Move(Piece):
                 return True
 
 
-    def roque_maior(self,cor_do_jogador):
+    def major_castle(self,color_of_the_player):
         ut = util()
-        cor_do_jogador = cor_do_jogador.upper()
-        if cor_do_jogador == "WHITE":
-            if (self.white_king_move_counts > 0) or (self.count_move_white_queen_rook > 0) or (ut.peca_ameacada(60,cor_do_jogador)) or (ut.peca_ameacada(59,cor_do_jogador)) or (ut.peca_ameacada(58,cor_do_jogador)) or (type(self.gameTiles[60].pieceOnTile) is not NullPiece ) or (type(self.gameTiles[59].pieceOnTile) is not NullPiece) or (type(self.gameTiles[58].pieceOnTile) is not NullPiece) or (ut.is_check(cor_do_jogador)):
+        if color_of_the_player == Colors.WHITE:
+            if (self.white_king_move_counts > 0) or (self.count_move_white_queen_rook > 0) or (ut.peca_ameacada(60,color_of_the_player)) or (ut.peca_ameacada(59,color_of_the_player)) or (ut.peca_ameacada(58,color_of_the_player)) or (type(self.gameTiles[60].pieceOnTile) is not NullPiece ) or (type(self.gameTiles[59].pieceOnTile) is not NullPiece) or (type(self.gameTiles[58].pieceOnTile) is not NullPiece) or (ut.is_check(color_of_the_player)):
                 return True
             else:
                 self.gameTiles[59] = Tile(59, King(59, "White"))
@@ -131,8 +130,8 @@ class Move(Piece):
                 self.gameTiles[61] = Tile(61, NullPiece())
                 self.gameTiles[57] = Tile(64, NullPiece())
                 return False
-        if cor_do_jogador == 'BLACK':
-            if (self.black_king_move_counts > 0) or (self.count_move_black_queen_rook > 0) or (ut.peca_ameacada(4,cor_do_jogador)) or (ut.peca_ameacada(3,cor_do_jogador)) or (ut.peca_ameacada(2,cor_do_jogador)) or (type(self.gameTiles[4].pieceOnTile) is not NullPiece) or (type(self.gameTiles[3].pieceOnTile) is not NullPiece) or (type(self.gameTiles[2].pieceOnTile) is not NullPiece) or (ut.is_check(cor_do_jogador)):
+        if color_of_the_player == Colors.BLACK:
+            if (self.black_king_move_counts > 0) or (self.count_move_black_queen_rook > 0) or (ut.peca_ameacada(4,color_of_the_player)) or (ut.peca_ameacada(3,color_of_the_player)) or (ut.peca_ameacada(2,color_of_the_player)) or (type(self.gameTiles[4].pieceOnTile) is not NullPiece) or (type(self.gameTiles[3].pieceOnTile) is not NullPiece) or (type(self.gameTiles[2].pieceOnTile) is not NullPiece) or (ut.is_check(color_of_the_player)):
                 return True
             else:
                 self.gameTiles[4] = Tile(4,Rook(4,"Black"))
