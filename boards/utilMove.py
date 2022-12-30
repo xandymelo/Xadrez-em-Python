@@ -77,7 +77,7 @@ class util(Piece):
             return False
     def checkmate(self,color_of_the_player):
         if self.is_check(color_of_the_player):
-            return self.testar_se_o_rei_tem_movimentos(color_of_the_player)
+            return self.the_king_has_moves(color_of_the_player)
         return False
                 
     def get_kings_house(self,color_of_the_player):
@@ -136,20 +136,20 @@ class util(Piece):
             if casa_do_rei - 9 in x:
                 x.remove(casa_do_rei - 9)
             if x == []:
-                return self.testar_se_o_rei_tem_movimentos(color_of_the_player)
+                return self.the_king_has_moves(color_of_the_player)
         return False
     
 
-    def testar_se_o_rei_tem_movimentos(self,cor_do_jogador):
-        casa_do_rei = self.get_kings_house(cor_do_jogador)
-        if self.gameTiles[casa_do_rei].pieceOnTile.possible_mov() == []:
-            return True
+    def the_king_has_moves(self,color_of_the_player):
+        kings_house = self.get_kings_house(color_of_the_player)
+        if self.gameTiles[kings_house].pieceOnTile.possible_mov() == []:
+            return False
         soma = 0 
-        for c in self.gameTiles[casa_do_rei].pieceOnTile.possible_mov():
-            x = self.check_if_move_is_possible(cor_do_jogador,casa_do_rei,c)
+        for moves in self.gameTiles[kings_house].pieceOnTile.possible_mov():
+            x = self.check_if_move_is_possible(color_of_the_player,kings_house,moves)
             if x:
                 soma += 1
-        if soma == len(self.gameTiles[casa_do_rei].pieceOnTile.possible_mov()):
+        if soma == len(self.gameTiles[kings_house].pieceOnTile.possible_mov()):
             return True
         return False
 

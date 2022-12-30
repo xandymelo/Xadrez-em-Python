@@ -63,6 +63,7 @@ O tabuleiro é impresso como na figura abaixo:
     #reduzir o custo do programa
     #refatorar a função move_piece
     #Ajustar o README
+    #xeque mate não funciona
     #pensar em fazer o movimento En Passant
     #rei x rei e cavalo ou rei x rei e bispo = empate
  
