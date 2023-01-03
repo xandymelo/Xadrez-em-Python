@@ -84,10 +84,13 @@ class Piece():
                         mov_possiveis.append(c.pieceOnTile.position - 1)
                         mov_possiveis.append(c.pieceOnTile.position + 9)
                         mov_possiveis.append(c.pieceOnTile.position - 9)
-                    
                     else:
-                        for d in c.pieceOnTile.possible_mov():
-                            mov_possiveis.append(d)
+                        if (len(c.pieceOnTile.possible_mov()) != 0):
+                            mov_possiveis = list(set(mov_possiveis)) + list(set(c.pieceOnTile.possible_mov()))
+                        # for d in c.pieceOnTile.possible_mov():
+                        #     mov_possiveis.append(d)
+                else:
+                    pass
         if color_of_the_player == Colors.WHITE:
             for c in self.gameTiles:
                 if c.pieceOnTile.alliance == Colors.BLACK:
@@ -114,8 +117,8 @@ class Piece():
                         for d in c.pieceOnTile.possible_mov():
                             mov_possiveis.append(d)
             
-        mov_possiveis = set(mov_possiveis)
-        mov_possiveis = list(mov_possiveis)
+        # mov_possiveis = set(mov_possiveis)
+        # mov_possiveis = list(mov_possiveis)
         remover = []
         for c in mov_possiveis:
             if c > 64 or c < 1:

@@ -9,3 +9,5 @@ class MoveTypes(Enum):
 class Status(Enum):
     VALID = 1
     INVALID = 2
+WHITE_PIECES = ['♜', '♞', '♝', '♛', '♚', '♟']
+BLACK_PIECES = ['♖', '♘', '♗', '♕', '♔', '♙']

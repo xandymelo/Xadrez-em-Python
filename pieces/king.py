@@ -1,6 +1,6 @@
 from pieces.piece import Piece
 from boards.utilMove import util
-from util import Colors
+from util import Colors, BLACK_PIECES, WHITE_PIECES
 
 class King(Piece):
 
@@ -48,11 +48,11 @@ class King(Piece):
         remover = []
         if cor_do_jogador == Colors.WHITE:
             for c in range(len(mov_possiveis)):
-                if ut.peca_ameacada(mov_possiveis[c],cor_do_jogador) or self.gameTiles[mov_possiveis[c]].pieceOnTile.toString().islower():
+                if ut.peca_ameacada(mov_possiveis[c],cor_do_jogador) or self.gameTiles[mov_possiveis[c]].pieceOnTile.toString() in BLACK_PIECES:
                     remover.append(mov_possiveis[c])
         if cor_do_jogador == Colors.BLACK:
             for c in range(len(mov_possiveis)):
-                if ut.peca_ameacada(mov_possiveis[c],cor_do_jogador) or self.gameTiles[mov_possiveis[c]].pieceOnTile.toString().isupper():
+                if ut.peca_ameacada(mov_possiveis[c],cor_do_jogador) or self.gameTiles[mov_possiveis[c]].pieceOnTile.toString() in WHITE_PIECES:
                     remover.append(mov_possiveis[c])
         for c in remover:
             mov_possiveis.remove(c)

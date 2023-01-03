@@ -64,6 +64,7 @@ O tabuleiro é impresso como na figura abaixo:
     #refatorar a função move_piece
     #Ajustar o README
     #xeque mate não funciona
+    #all_possible_moves está bugado
     #pensar em fazer o movimento En Passant
     #rei x rei e cavalo ou rei x rei e bispo = empate
  
