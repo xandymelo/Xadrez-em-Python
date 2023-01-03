@@ -14,47 +14,49 @@ class King(Piece):
     
     def possible_mov(self):
         ut = util()
-        cor_do_jogador = self.alliance
-        mov_possiveis = []
-        mov_possiveis.append(self.position + 8)
-        mov_possiveis.append(self.position - 8)
-        mov_possiveis.append(self.position + 7)
-        mov_possiveis.append(self.position - 7)
-        mov_possiveis.append(self.position + 1)
-        mov_possiveis.append(self.position - 1)
-        mov_possiveis.append(self.position + 9)
-        mov_possiveis.append(self.position - 9)
+        color_of_the_player = self.alliance
+        possible_moves = []
+        possible_moves.append(self.position + 8)
+        possible_moves.append(self.position - 8)
+        possible_moves.append(self.position + 7)
+        possible_moves.append(self.position - 7)
+        possible_moves.append(self.position + 1)
+        possible_moves.append(self.position - 1)
+        possible_moves.append(self.position + 9)
+        possible_moves.append(self.position - 9)
         if self.position in self.primeira_linha:
-            mov_possiveis.remove(self.position - 8)
-            mov_possiveis.remove(self.position - 7)
-            mov_possiveis.remove(self.position - 9)
+            possible_moves.remove(self.position - 8)
+            possible_moves.remove(self.position - 7)
+            possible_moves.remove(self.position - 9)
         if self.position in self.ultima_linha:
-            mov_possiveis.remove(self.position + 7)
-            mov_possiveis.remove(self.position + 8)
-            mov_possiveis.remove(self.position + 9)
+            possible_moves.remove(self.position + 7)
+            possible_moves.remove(self.position + 8)
+            possible_moves.remove(self.position + 9)
         if self.position in self.primeira_coluna:
-            mov_possiveis.remove(self.position - 1)
-            if self.position + 7 in mov_possiveis:
-                mov_possiveis.remove(self.position + 7)
-            if self.position - 9 in mov_possiveis:
-                mov_possiveis.remove(self.position - 9)
+            possible_moves.remove(self.position - 1)
+            if self.position + 7 in possible_moves:
+                possible_moves.remove(self.position + 7)
+            if self.position - 9 in possible_moves:
+                possible_moves.remove(self.position - 9)
         if self.position in self.ultima_coluna:
-            mov_possiveis.remove(self.position + 1)
-            if self.position + 9 in mov_possiveis:
-                mov_possiveis.remove(self.position + 9)
-            if self.position - 7 in mov_possiveis:
-                mov_possiveis.remove(self.position - 7)
+            possible_moves.remove(self.position + 1)
+            if self.position + 9 in possible_moves:
+                possible_moves.remove(self.position + 9)
+            if self.position - 7 in possible_moves:
+                possible_moves.remove(self.position - 7)
 
         remover = []
-        if cor_do_jogador == Colors.WHITE:
-            for c in range(len(mov_possiveis)):
-                if ut.peca_ameacada(mov_possiveis[c],cor_do_jogador) or self.gameTiles[mov_possiveis[c]].pieceOnTile.toString() in BLACK_PIECES:
-                    remover.append(mov_possiveis[c])
-        if cor_do_jogador == Colors.BLACK:
-            for c in range(len(mov_possiveis)):
-                if ut.peca_ameacada(mov_possiveis[c],cor_do_jogador) or self.gameTiles[mov_possiveis[c]].pieceOnTile.toString() in WHITE_PIECES:
-                    remover.append(mov_possiveis[c])
+        if color_of_the_player == Colors.WHITE:
+            opponent_possible_moves = self.all_possible_moves(color_of_the_player)
+            for c in range(len(possible_moves)):
+                if ut.threat_piece(possible_moves[c],opponent_possible_moves) or self.gameTiles[possible_moves[c]].pieceOnTile.toString() in BLACK_PIECES:
+                    remover.append(possible_moves[c])
+        if color_of_the_player == Colors.BLACK:
+            opponent_possible_moves =  self.all_possible_moves(color_of_the_player)
+            for c in range(len(possible_moves)):
+                if ut.threat_piece(possible_moves[c], opponent_possible_moves) or self.gameTiles[possible_moves[c]].pieceOnTile.toString() in WHITE_PIECES:
+                    remover.append(possible_moves[c])
         for c in remover:
-            mov_possiveis.remove(c)
-        return mov_possiveis
+            possible_moves.remove(c)
+        return possible_moves
         

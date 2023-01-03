@@ -36,14 +36,14 @@ class util(Piece):
         kings_house = ""
         if color_of_the_player == Colors.BLACK:
             kings_house = self.get_kings_house(color_of_the_player)
-            possible_moves = self.all_possible_moves(Colors.WHITE)
+            possible_moves = self.all_possible_moves(Colors.BLACK)
             if kings_house in possible_moves:
                 return True
             else:
                 return False
         if color_of_the_player == Colors.WHITE:
             kings_house = self.get_kings_house(color_of_the_player)
-            possible_moves = self.all_possible_moves(Colors.BLACK)
+            possible_moves = self.all_possible_moves(Colors.WHITE)
             if kings_house in possible_moves:
                 return True
             else:
@@ -56,15 +56,14 @@ class util(Piece):
         else:
             return True
 
-    def peca_ameacada(self,current_location,color_of_the_player):
-        opponent_player_color = Colors.BLACK if color_of_the_player == Colors.WHITE else Colors.WHITE
-        if current_location in self.all_possible_moves(opponent_player_color):
+    def threat_piece(self,current_location, opponent_possible_moves):
+        if current_location in opponent_possible_moves:
             return True
         else:
             return False
 
     def peca_cravada(self,cor_do_jogador):
-        if self.peca_ameacada(self.position,cor_do_jogador):
+        if self.threat_piece(self.position,cor_do_jogador):
             x = copy.deepcopy(self.gameTiles[self.position])
             self.gameTiles[self.position] = Tile(self.position, NullPiece())  #usar deepcopy
             if self.is_check(self.alliance):

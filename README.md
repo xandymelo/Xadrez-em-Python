@@ -65,6 +65,7 @@ O tabuleiro é impresso como na figura abaixo:
     #Ajustar o README
     #xeque mate não funciona
     #all_possible_moves está bugado
+    #torre das pretas podendo passar pelo rei
     #pensar em fazer o movimento En Passant
     #rei x rei e cavalo ou rei x rei e bispo = empate
  
