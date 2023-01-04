@@ -52,7 +52,7 @@ class Move(Piece):
         converted_current_location = ut.convert_positions(current_location)
         converted_new_location = ut.convert_positions(new_location)
             
-        #criar a parte que verifica se a jogada é válida#
+
         verification = ut.check_if_move_is_valid(converted_current_location,converted_new_location)
         if not verification or (self.gameTiles[converted_current_location].pieceOnTile.alliance != color_of_the_player):
             print('invalid move')

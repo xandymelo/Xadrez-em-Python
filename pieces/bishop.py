@@ -17,25 +17,25 @@ class Bishop(Piece):
         mov_possiveisDSD.remove(self.position)
         while len (mov_possiveisDSD) > 8 - (self.position % 8):
             mov_possiveisDSD.pop ()
-        mov_possiveisDSD = self.remover_movimentos_invalidos_diagonal_superior(mov_possiveisDSD)
+        mov_possiveisDSD = self.invalid_moves_remover_right_side(mov_possiveisDSD)
         
         # Isto é para achar as casa da Diagonal Infeiror Esquerda(DIE) das casas do bispo -9#
         mov_possiveisDIE = [x for x in range (self.position, 0, -9)]
         while len (mov_possiveisDIE) > (self.position // 8) + 1:
             mov_possiveisDIE.pop ()
         mov_possiveisDIE.remove(self.position)
-        mov_possiveisDIE = self.remover_movimentos_invalidos_diagonal_inferior(mov_possiveisDIE)
+        mov_possiveisDIE = self.invalid_moves_remover_left_side(mov_possiveisDIE)
 
         #DSE#
         mov_possiveisDSE = [x for x in range (self.position, 65, 7)]
         while len (mov_possiveisDSE) > (self.position % 8) - 1:
             mov_possiveisDSE.pop ()
-        mov_possiveisDSE = self.remover_movimentos_invalidos_diagonal_superior(mov_possiveisDSE)
+        mov_possiveisDSE = self.invalid_moves_remover_right_side(mov_possiveisDSE)
         #DID(Se basear no caso de DIE)MUITO MASSA, CONSEGUIMOS RESOLVER O B.O APENAS PENSANDO#
         mov_possiveisDID = [x for x in range (self.position, 0, -7)]
         while len (mov_possiveisDIE) > (self.position // 8) + 1:
             mov_possiveisDIE.pop ()
         mov_possiveisDID.remove(self.position)
-        mov_possiveisDID = self.remover_movimentos_invalidos_diagonal_inferior(mov_possiveisDID)
+        mov_possiveisDID = self.invalid_moves_remover_left_side(mov_possiveisDID)
         mov_possiveis = mov_possiveisDSD + mov_possiveisDID + mov_possiveisDSE + mov_possiveisDIE
         return mov_possiveis

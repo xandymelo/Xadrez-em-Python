@@ -1,4 +1,4 @@
-from util import Colors
+from util import Colors,BLACK_PIECES,WHITE_PIECES
 
 class Piece():
 
@@ -20,45 +20,45 @@ class Piece():
         
 
 
-    def remover_movimentos_invalidos_diagonal_superior(self,mov_possiveisDSD):
+    def invalid_moves_remover_right_side(self,possible_moves):
         if self.alliance == Colors.BLACK:
-            for c in mov_possiveisDSD:
-                if self.gameTiles[c].pieceOnTile.toString().isupper():
-                    mov_possiveisDSD = [x for x in mov_possiveisDSD if x < c]
+            for c in possible_moves:
+                if self.gameTiles[c].pieceOnTile.toString() in BLACK_PIECES:
+                    possible_moves = [x for x in possible_moves if x < c]
                     break
-                elif self.gameTiles[c].pieceOnTile.toString().islower():
-                    mov_possiveisDSD = [x for x in mov_possiveisDSD if x <= c]
+                elif self.gameTiles[c].pieceOnTile.toString() in WHITE_PIECES:
+                    possible_moves = [x for x in possible_moves if x <= c]
                     break
                 
         if self.alliance == Colors.WHITE:
-            for c in mov_possiveisDSD:
-                if self.gameTiles[c].pieceOnTile.toString().islower():
-                    mov_possiveisDSD = [x for x in mov_possiveisDSD if x < c]
+            for c in possible_moves:
+                if self.gameTiles[c].pieceOnTile.toString() in WHITE_PIECES:
+                    possible_moves = [x for x in possible_moves if x < c]
                     break
-                elif self.gameTiles[c].pieceOnTile.toString().isupper():
-                    mov_possiveisDSD = [x for x in mov_possiveisDSD if x <= c]
+                elif self.gameTiles[c].pieceOnTile.toString() in BLACK_PIECES:
+                    possible_moves = [x for x in possible_moves if x <= c]
                     break
-        return mov_possiveisDSD
+        return possible_moves
     
-    def remover_movimentos_invalidos_diagonal_inferior(self,mov_possiveisDIE):
+    def invalid_moves_remover_left_side(self,possibles_moves):
         if self.alliance == Colors.BLACK:
-            for c in mov_possiveisDIE:
-                if self.gameTiles[c].pieceOnTile.toString().isupper():
-                    mov_possiveisDIE = [x for x in mov_possiveisDIE if x > c]
+            for c in possibles_moves:
+                if self.gameTiles[c].pieceOnTile.toString() in BLACK_PIECES:
+                    possibles_moves = [x for x in possibles_moves if x > c]
                     break
-                elif self.gameTiles[c].pieceOnTile.toString().islower():
-                    mov_possiveisDIE = [x for x in mov_possiveisDIE if x >= c]
+                elif self.gameTiles[c].pieceOnTile.toString()  in WHITE_PIECES:
+                    possibles_moves = [x for x in possibles_moves if x >= c]
                     break
                 
         if self.alliance == Colors.WHITE:
-            for c in mov_possiveisDIE:
-                if self.gameTiles[c].pieceOnTile.toString().islower():
-                    mov_possiveisDIE = [x for x in mov_possiveisDIE if x > c]
+            for c in possibles_moves:
+                if self.gameTiles[c].pieceOnTile.toString() in WHITE_PIECES:
+                    possibles_moves = [x for x in possibles_moves if x > c]
                     break
-                elif self.gameTiles[c].pieceOnTile.toString().isupper():
-                    mov_possiveisDIE = [x for x in mov_possiveisDIE if x >= c]
+                elif self.gameTiles[c].pieceOnTile.toString() in BLACK_PIECES:
+                    possibles_moves = [x for x in possibles_moves if x >= c]
                     break
-        return mov_possiveisDIE
+        return possibles_moves
     
 
     def all_possible_moves(self,color_of_the_player):#Note que não adicionei os movimentos dos reis, pois vou usar esta função para verificar xeque, e xeque mate#

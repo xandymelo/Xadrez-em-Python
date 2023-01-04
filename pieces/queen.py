@@ -18,45 +18,45 @@ class Queen(Piece):
         mov_possiveis_HD = [x for x in range (self.position + 1, 65)]
         while len (mov_possiveis_HD) > 8 - (self.position % 8):
             mov_possiveis_HD.pop ()
-        mov_possiveis_HD = self.remover_movimentos_invalidos_diagonal_superior(mov_possiveis_HD)
+        mov_possiveis_HD = self.invalid_moves_remover_right_side(mov_possiveis_HD)
         #HE = horizontal esquerda#
         mov_possiveis_HE = [x for x in range (self.position, 0, -1)]
         while len (mov_possiveis_HE) > ((self.position) % 8):
             mov_possiveis_HE.pop ()
         mov_possiveis_HE.remove (self.position)
-        mov_possiveis_HE = self.remover_movimentos_invalidos_diagonal_inferior(mov_possiveis_HE)
+        mov_possiveis_HE = self.invalid_moves_remover_left_side(mov_possiveis_HE)
         #VS = Vertical Superior#
         mov_possiveis_VS = [x for x in range(self.position,65,8)]
         mov_possiveis_VS.remove (self.position)
-        mov_possiveis_VS = self.remover_movimentos_invalidos_diagonal_superior(mov_possiveis_VS)
+        mov_possiveis_VS = self.invalid_moves_remover_right_side(mov_possiveis_VS)
         #VI = Vertical Inferior#
         mov_possiveis_VI = [x for x in range(self.position,0,-8)]
         mov_possiveis_VI.remove (self.position)
-        mov_possiveis_VI = self.remover_movimentos_invalidos_diagonal_inferior(mov_possiveis_VI)
+        mov_possiveis_VI = self.invalid_moves_remover_left_side(mov_possiveis_VI)
         #Isto é para achar as casa da Diagonal Superior Direita(DSD) das casas do bispo +9#
         mov_possiveisDSD = [x for x in range (self.position, 65, 9)]
         mov_possiveisDSD.remove (self.position)
         while len (mov_possiveisDSD) > 8 - (self.position % 8):
             mov_possiveisDSD.pop ()
-        mov_possiveisDSD = self.remover_movimentos_invalidos_diagonal_superior(mov_possiveisDSD)
+        mov_possiveisDSD = self.invalid_moves_remover_right_side(mov_possiveisDSD)
         
         # Isto é para achar as casa da Diagonal Infeiror Esquerda(DIE) das casas do bispo -9#
         mov_possiveisDIE = [x for x in range (self.position, 0, -9)]
         while len (mov_possiveisDIE) > (self.position // 8) + 1:
             mov_possiveisDIE.pop ()
         mov_possiveisDIE.remove (self.position)
-        mov_possiveisDIE = self.remover_movimentos_invalidos_diagonal_inferior(mov_possiveisDIE)
+        mov_possiveisDIE = self.invalid_moves_remover_left_side(mov_possiveisDIE)
 
         #DSE#
         mov_possiveisDSE = [x for x in range (self.position, 65, 7)]
         mov_possiveisDSE.remove (self.position)
         while len (mov_possiveisDSE) > (self.position % 8) - 1:
             mov_possiveisDSE.pop ()
-        mov_possiveisDSE = self.remover_movimentos_invalidos_diagonal_superior(mov_possiveisDSE)
+        mov_possiveisDSE = self.invalid_moves_remover_right_side(mov_possiveisDSE)
         mov_possiveisDID = [x for x in range (self.position, 0, -7)]
         while len (mov_possiveisDID) > (self.position // 8) + 1:
             mov_possiveisDID.pop ()
         mov_possiveisDID.remove (self.position)
-        mov_possiveisDID = self.remover_movimentos_invalidos_diagonal_inferior(mov_possiveisDID)
+        mov_possiveisDID = self.invalid_moves_remover_left_side(mov_possiveisDID)
         mov_possiveis = mov_possiveis_HD + mov_possiveis_HE + mov_possiveis_VI + mov_possiveis_VS + mov_possiveisDID + mov_possiveisDIE + mov_possiveisDSD + mov_possiveisDSE
         return mov_possiveis

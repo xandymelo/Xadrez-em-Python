@@ -76,7 +76,7 @@ class util(Piece):
             return False
     def checkmate(self,color_of_the_player):
         if self.is_check(color_of_the_player):
-            return self.the_king_has_moves(color_of_the_player)
+            return not self.the_king_has_moves(color_of_the_player)
         return False
                 
     def get_kings_house(self,color_of_the_player):

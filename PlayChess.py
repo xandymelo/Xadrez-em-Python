@@ -1,9 +1,6 @@
 
-import os
 from boards.ChessBoard import Board
-from pieces.piece import Piece
 from boards.move import Move
-from pieces.pawn import Pawn
 from boards.utilMove import util
 from util import Colors, MoveTypes, Status
 
@@ -12,12 +9,12 @@ class Main():
     def __init__(self):
         pass
 
-    def main(self):
+    def start_game(self):
         ut = util()
         chessBoard = Board()
         chessBoard.createBoard()
-        cor1 = Colors.WHITE
-        cor2 = Colors.BLACK
+        white = Colors.WHITE
+        black = Colors.BLACK
         move = Move()
         chessBoard.printBoard()
         #x = chessBoard.gameTiles[29].pieceOnTile.possible_mov() 
@@ -27,16 +24,16 @@ class Main():
             while actualMoviment:
                 jogada1 = input("Jogador1: ")
                 jogada1 = MoveTypes.MINOR_CASTLING if jogada1.lower() == "minorcastle" else MoveTypes.MAJOR_CASTLING if jogada1.lower() == "majorcastle" else jogada1
-                moviment = move.move_piece(cor1,jogada1)
+                moviment = move.move_piece(white,jogada1)
                 actualMoviment = True if moviment == Status.INVALID else False
             chessBoard.printBoard()
             actualMoviment = True
-            if ut.checkmate(cor2):
+            if ut.checkmate(black):
                 print("Xeque mate!! Brancas vencem")
                 x = False
                 actualMoviment = False
                 break
-            if ut.stalemate(cor2):
+            if ut.stalemate(black):
                 print("Empate, rei afogado")
                 x = False
                 actualMoviment = False
@@ -47,15 +44,15 @@ class Main():
             while actualMoviment:
                 jogada2 = input("Jogador2: ")
                 jogada2 = MoveTypes.MINOR_CASTLING if jogada2.lower() == "minorcastle" else MoveTypes.MAJOR_CASTLING if jogada2.lower() == "majorcastle" else jogada2
-                moviment = move.move_piece(cor2,jogada2)
+                moviment = move.move_piece(black,jogada2)
                 actualMoviment = True if moviment == Status.INVALID else False
             chessBoard.printBoard()
-            if ut.checkmate(cor1):
+            if ut.checkmate(white):
                 print("Xeque mate!! Pretas vencem")
                 x = False
                 actualMoviment = False
                 break
-            if ut.stalemate(cor1):
+            if ut.stalemate(white):
                 print("Empate, rei afogado")
                 x = False
                 actualMoviment = False
@@ -63,8 +60,9 @@ class Main():
                 x = False
                 actualMoviment = False
                 break
-x = Main()
-x.main()
+if __name__ == '__main__':
+    match = Main()
+    match.start_game()
 
 #dividir a função movimentar_peça criando subfunções em utilmove
 #reduzir o custo do programa

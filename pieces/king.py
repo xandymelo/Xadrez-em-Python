@@ -45,18 +45,16 @@ class King(Piece):
             if self.position - 7 in possible_moves:
                 possible_moves.remove(self.position - 7)
 
-        remover = []
+        remove = []
         if color_of_the_player == Colors.WHITE:
             opponent_possible_moves = self.all_possible_moves(color_of_the_player)
             for c in range(len(possible_moves)):
-                if ut.threat_piece(possible_moves[c],opponent_possible_moves) or self.gameTiles[possible_moves[c]].pieceOnTile.toString() in BLACK_PIECES:
-                    remover.append(possible_moves[c])
+                if ut.threat_piece(possible_moves[c],opponent_possible_moves) or self.gameTiles[possible_moves[c]].pieceOnTile.toString() in BLACK_PIECES or self.gameTiles[possible_moves[c]].pieceOnTile.toString() in WHITE_PIECES:
+                    remove.append(possible_moves[c])
         if color_of_the_player == Colors.BLACK:
             opponent_possible_moves =  self.all_possible_moves(color_of_the_player)
             for c in range(len(possible_moves)):
-                if ut.threat_piece(possible_moves[c], opponent_possible_moves) or self.gameTiles[possible_moves[c]].pieceOnTile.toString() in WHITE_PIECES:
-                    remover.append(possible_moves[c])
-        for c in remover:
-            possible_moves.remove(c)
-        return possible_moves
+                if ut.threat_piece(possible_moves[c], opponent_possible_moves) or self.gameTiles[possible_moves[c]].pieceOnTile.toString() in WHITE_PIECES or self.gameTiles[possible_moves[c]].pieceOnTile.toString() in BLACK_PIECES:
+                    remove.append(possible_moves[c])
+        return [move for move in possible_moves if move not in remove]
         
